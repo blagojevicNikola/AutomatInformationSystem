@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{72A9F3B2-3E30-4D91-96D7-5D9310195E43}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>AutomatInformationSystem</RootNamespace>
+    <AssemblyName>AutomatInformationSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.0.23.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Controls\AutomatItemCard.xaml.cs">
+      <DependentUpon>AutomatItemCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProizvodItemCard.xaml.cs">
+      <DependentUpon>ProizvodItemCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ZaposleniItemCard.xaml.cs">
+      <DependentUpon>ZaposleniItemCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DesignViews\AutomatiListDesignView.cs" />
+    <Compile Include="DesignViews\AutomatItemCardDesignView.cs" />
+    <Compile Include="DesignViews\ProizvodItemCardDesignView.cs" />
+    <Compile Include="DesignViews\ProizvodiListDesignView.cs" />
+    <Compile Include="DesignViews\ZaposleniItemCardDesignView.cs" />
+    <Compile Include="DesignViews\ZaposleniListDesignView.cs" />
+    <Compile Include="ModelViews\AddingAutomatViewModel.cs" />
+    <Compile Include="ModelViews\AddingProizvodViewModel.cs" />
+    <Compile Include="ModelViews\AddingZaposleniViewModel.cs" />
+    <Compile Include="ModelViews\AutomatiPageModelView.cs" />
+    <Compile Include="ModelViews\AutomatItemCardViewModel.cs" />
+    <Compile Include="ModelViews\ParameterRelayCommand.cs" />
+    <Compile Include="ModelViews\ProizvodiPageModelView.cs" />
+    <Compile Include="ModelViews\ProizvodItemCardViewModel.cs" />
+    <Compile Include="ModelViews\RelayCommand.cs" />
+    <Compile Include="ModelViews\ZaposleniItemCardViewModel.cs" />
+    <Compile Include="ModelViews\ZaposleniPageModelView.cs" />
+    <Compile Include="Model\DAO\Implementation\ZaposleniImplDAO.cs" />
+    <Compile Include="Model\DAO\Interface\IProizvodDAO.cs" />
+    <Compile Include="Model\DAO\Interface\IZaposleniDAO.cs" />
+    <Compile Include="Model\DTO\HranaDTO.cs" />
+    <Compile Include="Model\DTO\KafaDTO.cs" />
+    <Compile Include="Model\DTO\ProizvodDTO.cs" />
+    <Compile Include="Model\DTO\RadnikDTO.cs" />
+    <Compile Include="Model\DTO\ServiserDTO.cs" />
+    <Compile Include="Model\DTO\ZaposleniDTO.cs" />
+    <Compile Include="Views\AddAutomatWindow.xaml.cs">
+      <DependentUpon>AddAutomatWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddProizvodWindow.xaml.cs">
+      <DependentUpon>AddProizvodWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddZaposleniWindow.xaml.cs">
+      <DependentUpon>AddZaposleniWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CloudView.xaml.cs">
+      <DependentUpon>CloudView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EmailView.xaml.cs">
+      <DependentUpon>EmailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\AutomatItemCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ProizvodItemCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ZaposleniItemCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\AddAutomatWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddProizvodWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddZaposleniWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CloudView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EmailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Images\automat.png" />
+    <Resource Include="Assets\Images\lokacija.png" />
+    <Resource Include="Assets\Images\zaposleni.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\trashcan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\info.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

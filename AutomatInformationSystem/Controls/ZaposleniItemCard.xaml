@@ -1,0 +1,125 @@
+﻿<UserControl x:Class="AutomatInformationSystem.Controls.ZaposleniItemCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AutomatInformationSystem.Controls"
+             xmlns:gl ="clr-namespace:AutomatInformationSystem"
+             mc:Ignorable="d" 
+             Height="60"
+             Margin="0,5,0,0"
+             d:DesignHeight="60" d:DesignWidth="1000">
+ <Border Background="white"
+         CornerRadius="15">
+    <Grid d:DataContext="{x:Static gl:ZaposleniItemCardDesignView.Instance}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="{Binding ID}"
+               Margin="5"
+               FontSize="15"
+               FontWeight="SemiBold"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Grid.Column="0"/>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="1">
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+        </StackPanel>
+
+        <TextBlock
+               Margin="5"
+               FontSize="15"
+               FontWeight="Normal"
+               HorizontalAlignment="Center"
+               VerticalAlignment="center"
+            Width="150"
+               Grid.Column="2">
+            <Run Text="{Binding Ime}"/>
+            <Run Text="{Binding Prezime}"/>
+        </TextBlock>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="3">
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+        </StackPanel>
+
+            <TextBlock 
+               Margin="5"
+               FontSize="15"
+               FontWeight="Normal"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Width="80"
+               Grid.Column="4">
+                <Run Text="{Binding DatumRodjenja,StringFormat='dd-MM-yyyy'}"/>
+            </TextBlock>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="5">
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+        </StackPanel>
+
+            <TextBlock 
+               Width="87"
+               Margin="5"
+               FontSize="15"
+               FontWeight="Normal"
+               HorizontalAlignment="Center"
+               VerticalAlignment="center"
+               Grid.Column="6">
+                <Run Text="{Binding BrojTelefona}"/>
+            </TextBlock>
+
+            <StackPanel Orientation="Horizontal"
+                    Grid.Column="7">
+                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+            </StackPanel>
+
+            <TextBlock 
+               Width="60"
+               Margin="5"
+               FontSize="15"
+               FontWeight="Normal"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Grid.Column="8">
+                <Run Text="{Binding Tip}"/>
+            </TextBlock>
+
+            <Grid Grid.Column="9"
+              HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Width="30"
+                    Height="30"
+                    Margin="5,0,5,0"
+                    Grid.Column="0">
+                    <Image Source="/Assets/Images/edit.png"/>
+                </Button>
+            <Button Width="30"
+                    Height="30"
+                    Margin="5,0,8,0"
+                    Grid.Column="1">
+                    <Image Source="/Assets/Images/trashcan.png"/>
+                </Button>
+        </Grid>
+
+    </Grid>
+ </Border>
+</UserControl>

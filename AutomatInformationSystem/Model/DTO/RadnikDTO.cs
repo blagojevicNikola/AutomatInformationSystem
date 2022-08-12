@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AutomatInformationSystem
+{
+    public class RadnikDTO : ZaposleniDTO
+    {
+        public RadnikDTO(int sifra, string ime, string prezime, string telefon, DateTime datumRodjenja, string tip):base(sifra, ime, prezime, telefon, datumRodjenja, tip)
+        {
+
+        }
+
+        public RadnikDTO(string ime, string prezime, string telefon, DateTime datumRodjenja, string tip) : base(ime, prezime, telefon, datumRodjenja, tip)
+        {
+
+        }
+
+    }
+}

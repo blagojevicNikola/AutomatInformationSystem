@@ -1,0 +1,44 @@
+﻿<Window x:Class="AutomatInformationSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutomatInformationSystem"
+        xmlns:views="clr-namespace:AutomatInformationSystem.Views"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="1200">
+
+
+    <Window.Resources>
+        <Style x:Key="NavigationContentStyle" TargetType="ContentControl">
+            <Setter Property="ContentTemplate" Value="{StaticResource HomeViewTemplate}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=NavigationMenuListBox, Path=SelectedItem}"
+                             Value="Assets/Images/zaposleni.png">
+                    <Setter Property="ContentTemplate" Value="{StaticResource EmailViewTemplate}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=NavigationMenuListBox, Path=SelectedItem}" 
+                             Value="Assets/Images/lokacija.png">
+                    <Setter Property="ContentTemplate" Value="{StaticResource CloudViewTemplate}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+    </Window.Resources>
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <ListBox x:Name="NavigationMenuListBox" 
+                 Style="{StaticResource NavigationListBoxStyle}"
+                 ItemContainerStyle="{DynamicResource NavigationListBoxItemStyle}"
+                 ItemTemplate="{DynamicResource NavigationDataTemplate}"
+                 ItemsSource="{StaticResource NavigationMenuItems}"/>
+
+        <ContentControl Grid.Column="1" Style="{StaticResource NavigationContentStyle}"/>
+    </Grid>
+</Window>
