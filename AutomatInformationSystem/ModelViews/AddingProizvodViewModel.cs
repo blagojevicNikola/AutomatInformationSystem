@@ -22,13 +22,26 @@ namespace AutomatInformationSystem
 
         public ICommand OkCommand { get; set; }
 
-        public string SelectedType { get; set; }
+        private string naziv;
+        private string tip;
 
-        public string Name { get; set; }
+        public string Tip { get { return tip; } set { tip = value; NotifyPropertyChanged("Tip"); } }
+
+        public string Naziv { get { return naziv; } set { naziv = value; NotifyPropertyChanged("Naziv"); } }
 
         private void okExecute()
         {
+            IProizvodDAO dao = new ProizvodiImplDAO();
+            dao.saveProizvod(Naziv, Tip);
             ClosingRequest(this, EventArgs.Empty);
+        }
+
+        protected void NotifyPropertyChanged(String info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
         }
     }
 }

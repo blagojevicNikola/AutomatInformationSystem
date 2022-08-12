@@ -21,6 +21,11 @@ namespace AutomatInformationSystem
         public ProizvodiPageModelView()
         {
             this.AddProizvodCommand = new RelayCommand(openAddingWindow);
+            IProizvodDAO dao = new ProizvodiImplDAO();
+            List<ProizvodDTO> listaProizvoda = dao.GetAllProizvod();
+            ObservableCollection<ProizvodItemCardViewModel> obsListaProizvoda = new ObservableCollection<ProizvodItemCardViewModel>();
+            listaProizvoda.ForEach(s => obsListaProizvoda.Add(new ProizvodItemCardViewModel(s.ID, s.Naziv, s.Tip)));
+            Items = obsListaProizvoda;
         }
 
         private void openAddingWindow()

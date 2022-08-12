@@ -14,5 +14,23 @@ namespace AutomatInformationSystem
 
         public string Tip { get; set; }
 
+        public ProizvodItemCardViewModel()
+        {
+
+        }
+
+        public ProizvodItemCardViewModel(int id, string naziv, string tip)
+        {
+            ID = id;
+            Naziv = naziv;
+            Tip = tip;
+        }
+
+        public ProizvodItemCardViewModel(string naziv, string tip)
+        {
+            Naziv = naziv;
+            Tip = tip;
+        }
+
     }
 }

@@ -32,7 +32,8 @@
             <TextBox FontSize="20"
                      Width="200"
                      HorizontalAlignment="Left"
-                     Margin="0,5,0,0"/>
+                     Margin="0,5,0,0"
+                     Text="{Binding Path=Naziv, Mode=TwoWay}"/>
         </StackPanel>
 
         <StackPanel Margin="10" Orientation="Vertical" Grid.Row="1">
@@ -46,7 +47,8 @@
                       Width="120"
                       HorizontalAlignment="Left"
                       SelectedIndex="0"
-                      HorizontalContentAlignment="Center">
+                      HorizontalContentAlignment="Center"
+                      Text="{Binding Path=Tip, Mode=OneWayToSource}">
                 <ComboBoxItem>Hrana</ComboBoxItem>
                 <ComboBoxItem>Kafa</ComboBoxItem>
             </ComboBox>

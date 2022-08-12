@@ -63,15 +63,15 @@ namespace AutomatInformationSystem
                 if (tip == "Hrana")
                 {
                     command.Parameters.Clear();
-                    command.CommandText = "insert into hrana(PROIZVOD_IdProizvod) VALUES(@PROIZVOD_IdProizvod)";
-                    command.Parameters.AddWithValue("@PROIZVOD_IdProizvod", id);
+                    command.CommandText = "insert into hrana(PROIZVOD_idProizvod) VALUES(@PROIZVOD_idProizvod)";
+                    command.Parameters.AddWithValue("@PROIZVOD_idProizvod", id);
                     command.ExecuteNonQuery();
                 }
                 else
                 {
                     command.Parameters.Clear();
-                    command.CommandText = "insert into kafa(PROIZVOD_IdProizvod) VALUES(@PROIZVOD_IdProizvod)";
-                    command.Parameters.AddWithValue("@PROIZVOD_IdProizvod", id);
+                    command.CommandText = "insert into kafa(PROIZVOD_idProizvod) VALUES(@PROIZVOD_idProizvod)";
+                    command.Parameters.AddWithValue("@PROIZVOD_idProizvod", id);
                     command.ExecuteNonQuery();
                 }
 

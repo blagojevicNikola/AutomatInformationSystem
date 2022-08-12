@@ -83,6 +83,7 @@
     <Compile Include="ModelViews\RelayCommand.cs" />
     <Compile Include="ModelViews\ZaposleniItemCardViewModel.cs" />
     <Compile Include="ModelViews\ZaposleniPageModelView.cs" />
+    <Compile Include="Model\DAO\Implementation\ProizvodiImplDAO.cs" />
     <Compile Include="Model\DAO\Implementation\ZaposleniImplDAO.cs" />
     <Compile Include="Model\DAO\Interface\IProizvodDAO.cs" />
     <Compile Include="Model\DAO\Interface\IZaposleniDAO.cs" />
