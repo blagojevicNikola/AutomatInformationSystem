@@ -87,11 +87,16 @@
     <Compile Include="Model\DAO\Implementation\ZaposleniImplDAO.cs" />
     <Compile Include="Model\DAO\Interface\IProizvodDAO.cs" />
     <Compile Include="Model\DAO\Interface\IZaposleniDAO.cs" />
+    <Compile Include="Model\DTO\AutomatDTO.cs" />
     <Compile Include="Model\DTO\HranaDTO.cs" />
     <Compile Include="Model\DTO\KafaDTO.cs" />
+    <Compile Include="Model\DTO\LokacijaDTO.cs" />
+    <Compile Include="Model\DTO\ObjekatDTO.cs" />
     <Compile Include="Model\DTO\ProizvodDTO.cs" />
     <Compile Include="Model\DTO\RadnikDTO.cs" />
     <Compile Include="Model\DTO\ServiserDTO.cs" />
+    <Compile Include="Model\DTO\UgovorDTO.cs" />
+    <Compile Include="Model\DTO\VlasnikDTO.cs" />
     <Compile Include="Model\DTO\ZaposleniDTO.cs" />
     <Compile Include="Views\AddAutomatWindow.xaml.cs">
       <DependentUpon>AddAutomatWindow.xaml</DependentUpon>

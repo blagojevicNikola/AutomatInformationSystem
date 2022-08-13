@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutomatInformationSystem.Views"
         mc:Ignorable="d"
-        Title="AddProizvodWindow" Height="350" Width="400">
+        Title="AddProizvodWindow" Height="350" Width="600">
 
     <Window.Resources>
         <Style x:Key="OkButton" TargetType="{x:Type Button}">
@@ -16,13 +16,20 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    
+
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+    <Grid Grid.Column="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
 
         <StackPanel Margin="10" Orientation="Vertical" Grid.Row="0">
             <Label Content="Naziv proizvoda"
@@ -54,7 +61,27 @@
             </ComboBox>
         </StackPanel>
 
-        <Button Grid.Row="2"
+        
+
+    </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Lista sastojaka"
+                   FontWeight="SemiBold"
+                   FontSize="20"
+                   Padding="0"
+                   Margin="10,10,10,0"
+                   Grid.Row="0"/>
+            
+            
+
+            <Button Grid.Row="2"
                 Height="40"
                 Width="100"
                 HorizontalAlignment="Right"
@@ -64,8 +91,9 @@
                 FontSize="20"
                 Padding="0"
                 Command="{Binding Path=OkCommand}">
-           OK
-        </Button>
+                OK
+            </Button>
+        </Grid>
 
     </Grid>
 </Window>
