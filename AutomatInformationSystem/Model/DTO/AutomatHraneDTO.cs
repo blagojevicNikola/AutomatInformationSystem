@@ -15,12 +15,12 @@ namespace AutomatInformationSystem
 
         }
 
-        public AutomatHraneDTO(int id, DateTime datumPostavljanja, int? objekatId, string tip, double potrosnja, int serijskiBroj, int kapacitet):base(id, datumPostavljanja, objekatId, tip, potrosnja, serijskiBroj)
+        public AutomatHraneDTO(int id, DateTime datumPostavljanja, int? objekatId, string tip, double potrosnja, long serijskiBroj, int kapacitet):base(id, datumPostavljanja, objekatId, tip, potrosnja, serijskiBroj)
         {
             Kapacitet = kapacitet;
         }
 
-        public AutomatHraneDTO(DateTime datumPostavljanja, int? objekatId, string tip, double potrosnja, int serijskiBroj, int kapacitet):base(datumPostavljanja, objekatId, tip, potrosnja, serijskiBroj)
+        public AutomatHraneDTO(DateTime datumPostavljanja, int? objekatId, string tip, double potrosnja, long serijskiBroj, int kapacitet):base(datumPostavljanja, objekatId, tip, potrosnja, serijskiBroj)
         {
             Kapacitet = kapacitet;
         }

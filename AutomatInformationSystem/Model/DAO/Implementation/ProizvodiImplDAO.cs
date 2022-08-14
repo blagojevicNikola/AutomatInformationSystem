@@ -47,8 +47,9 @@ namespace AutomatInformationSystem
             throw new NotImplementedException();
         }
 
-        public void saveProizvod(string naziv, string tip)
+        public long saveProizvod(string naziv, string tip, List<SastojciDTO> sastojci)
         {
+            long id;
             using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
             {
 
@@ -59,7 +60,7 @@ namespace AutomatInformationSystem
                 command.Parameters.AddWithValue("@Naziv", naziv);
                 command.Parameters.AddWithValue("@Tip", tip);
                 command.ExecuteNonQuery();
-                long id = command.LastInsertedId;
+                id = command.LastInsertedId;
                 if (tip == "Hrana")
                 {
                     command.Parameters.Clear();
@@ -73,9 +74,19 @@ namespace AutomatInformationSystem
                     command.CommandText = "insert into kafa(PROIZVOD_idProizvod) VALUES(@PROIZVOD_idProizvod)";
                     command.Parameters.AddWithValue("@PROIZVOD_idProizvod", id);
                     command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                    command.CommandText = "insert into kafa_od_sastojaka(SASTOJCI_idSastojci, KAFA_PROIZVOD_idProizvod) VALUES(@idSastojci, @idProizvod)";
+                    foreach(SastojciDTO s in sastojci)
+                    {
+                        command.Parameters.Clear();
+                        command.Parameters.AddWithValue("@idSastojci", s.ID);
+                        command.Parameters.AddWithValue("@idProizvod", id);
+                        command.ExecuteNonQuery();
+                    }
                 }
 
             }
+            return id;
         }
 
         public void updateProizvod(ProizvodDTO proizvod)

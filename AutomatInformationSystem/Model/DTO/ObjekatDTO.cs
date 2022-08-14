@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomatInformationSystem.Model.DTO
+namespace AutomatInformationSystem
 {
     public class ObjekatDTO
     {

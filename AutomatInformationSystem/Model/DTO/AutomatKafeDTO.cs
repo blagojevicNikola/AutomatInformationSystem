@@ -15,12 +15,12 @@ namespace AutomatInformationSystem
 
         }
 
-        public AutomatKafeDTO(int id, DateTime datumPostavljanja, int? objekatId, string tip, double potrosnja, int serijskiBroj, double kapacitet) : base(id, datumPostavljanja, objekatId, tip, potrosnja, serijskiBroj)
+        public AutomatKafeDTO(int id, DateTime datumPostavljanja, int? objekatId, string tip, double potrosnja, long serijskiBroj, double kapacitet) : base(id, datumPostavljanja, objekatId, tip, potrosnja, serijskiBroj)
         {
             Kapacitet = kapacitet;
         }
 
-        public AutomatKafeDTO(DateTime datumPostavljanja, int? objekatId, string tip, double potrosnja, int serijskiBroj, double kapacitet) : base(datumPostavljanja, objekatId, tip, potrosnja, serijskiBroj)
+        public AutomatKafeDTO(DateTime datumPostavljanja, int? objekatId, string tip, double potrosnja, long serijskiBroj, double kapacitet) : base(datumPostavljanja, objekatId, tip, potrosnja, serijskiBroj)
         {
             Kapacitet = kapacitet;
         }

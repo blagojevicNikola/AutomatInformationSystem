@@ -68,8 +68,8 @@
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <Label Content="Lista sastojaka"
@@ -78,8 +78,18 @@
                    Padding="0"
                    Margin="10,10,10,0"
                    Grid.Row="0"/>
-            
-            
+
+            <ItemsControl Grid.Row="1" ItemsSource="{Binding SastojciList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="10,5,10,5">
+                            <CheckBox IsChecked="{Binding Izabrano, Mode=OneWayToSource}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                            <Label Content="{Binding ID}" Padding="0" Margin="0,0,5,0"/>
+                            <Label Content="{Binding Naziv}" Padding="0" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
             <Button Grid.Row="2"
                 Height="40"

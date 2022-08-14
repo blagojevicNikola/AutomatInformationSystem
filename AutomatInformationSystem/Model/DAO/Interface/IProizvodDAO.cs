@@ -11,7 +11,7 @@ namespace AutomatInformationSystem
         List<ProizvodDTO> GetAllProizvod();
         ProizvodDTO GetProizvodById(int id);
 
-        void saveProizvod(string naziv, string tip);
+        long saveProizvod(string naziv, string tip, List<SastojciDTO> sastojci);
 
         void deleteProizvod(ProizvodDTO proizvod);
 
