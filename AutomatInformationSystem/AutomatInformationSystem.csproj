@@ -77,6 +77,7 @@
     <Compile Include="ModelViews\AddingZaposleniViewModel.cs" />
     <Compile Include="ModelViews\AutomatiPageModelView.cs" />
     <Compile Include="ModelViews\AutomatItemCardViewModel.cs" />
+    <Compile Include="ModelViews\ObjektiItemViewModel.cs" />
     <Compile Include="ModelViews\ParameterRelayCommand.cs" />
     <Compile Include="ModelViews\ProizvodiPageModelView.cs" />
     <Compile Include="ModelViews\ProizvodItemCardViewModel.cs" />
@@ -84,9 +85,15 @@
     <Compile Include="ModelViews\SastojciViewModel.cs" />
     <Compile Include="ModelViews\ZaposleniItemCardViewModel.cs" />
     <Compile Include="ModelViews\ZaposleniPageModelView.cs" />
+    <Compile Include="Model\DAO\Implementation\AutomatiImplDAO.cs" />
+    <Compile Include="Model\DAO\Implementation\LokacijeImplDAO.cs" />
+    <Compile Include="Model\DAO\Implementation\ObjektiImplDAO.cs" />
     <Compile Include="Model\DAO\Implementation\ProizvodiImplDAO.cs" />
     <Compile Include="Model\DAO\Implementation\SastojciImplDAO.cs" />
     <Compile Include="Model\DAO\Implementation\ZaposleniImplDAO.cs" />
+    <Compile Include="Model\DAO\Interface\IAutomatDAO.cs" />
+    <Compile Include="Model\DAO\Interface\ILokacijeDAO.cs" />
+    <Compile Include="Model\DAO\Interface\IObjektiDAO.cs" />
     <Compile Include="Model\DAO\Interface\IProizvodDAO.cs" />
     <Compile Include="Model\DAO\Interface\ISastojciDAO.cs" />
     <Compile Include="Model\DAO\Interface\IZaposleniDAO.cs" />

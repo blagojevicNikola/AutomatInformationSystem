@@ -12,12 +12,26 @@ namespace AutomatInformationSystem
         private string _potrosnja;
         public int ID { get; set; }
 
-        public String Sifra { get; set; }
+        public int Sifra { get; set; }
 
         public string Lokacija { get; set; }
 
         public string Tip { get; set; }
 
         public string Potrosnja { get { return _potrosnja; } set { _potrosnja = value + "W"; } }
+
+        public AutomatItemCardViewModel()
+        {
+
+        }
+
+        public AutomatItemCardViewModel(int id, int sifra, string lokacija, string tip, string potrosnja )
+        {
+            ID = id;
+            Sifra = sifra;
+            Lokacija = lokacija;
+            Tip = tip;
+            Potrosnja = potrosnja;
+        }
     }
 }

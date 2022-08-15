@@ -21,6 +21,14 @@ namespace AutomatInformationSystem
         public AutomatiPageModelView()
         {
             this.AddAutomatCommand = new RelayCommand(addAutomatCommand);
+            IAutomatDAO dao = new AutomatiImplDAO();
+            List<AutomatDTO> listaAutomata = dao.GetAllAutomati();
+            ObservableCollection<AutomatItemCardViewModel> obsAutomati = new ObservableCollection<AutomatItemCardViewModel>();
+            foreach(AutomatDTO a in listaAutomata)
+            {
+                
+            }
+            //listaAutomata.ForEach(s => obsAutomati.Add(new AutomatItemCardViewModel(s.ID,s)))
         }
 
         private void addAutomatCommand()

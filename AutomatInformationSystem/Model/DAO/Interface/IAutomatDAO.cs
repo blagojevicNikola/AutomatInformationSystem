@@ -10,7 +10,7 @@ namespace AutomatInformationSystem
     {
         List<AutomatDTO> GetAllAutomati();
         AutomatDTO GetAutomatById();
-        void saveAutomat(AutomatDTO automat, string kapacitet);
+        void saveAutomat(AutomatDTO automat);
 
         void updateAutomat(AutomatDTO automat, string kapacitet);
 

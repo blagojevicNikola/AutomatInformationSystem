@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AutomatInformationSystem
+{ 
     interface IObjektiDAO
     {
         List<ObjekatDTO> GetAllObjekti();
