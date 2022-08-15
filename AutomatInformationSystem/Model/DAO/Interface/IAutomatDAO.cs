@@ -9,6 +9,8 @@ namespace AutomatInformationSystem
     interface IAutomatDAO
     {
         List<AutomatDTO> GetAllAutomati();
+
+        List<AutomatFullInfoDTO> GetAllAutomatiFullInfo();
         AutomatDTO GetAutomatById();
         void saveAutomat(AutomatDTO automat);
 

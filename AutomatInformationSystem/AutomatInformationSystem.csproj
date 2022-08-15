@@ -98,6 +98,7 @@
     <Compile Include="Model\DAO\Interface\ISastojciDAO.cs" />
     <Compile Include="Model\DAO\Interface\IZaposleniDAO.cs" />
     <Compile Include="Model\DTO\AutomatDTO.cs" />
+    <Compile Include="Model\DTO\AutomatFullInfoDTO.cs" />
     <Compile Include="Model\DTO\AutomatHraneDTO.cs" />
     <Compile Include="Model\DTO\AutomatKafeDTO.cs" />
     <Compile Include="Model\DTO\HranaDTO.cs" />

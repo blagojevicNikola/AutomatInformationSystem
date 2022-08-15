@@ -10,11 +10,12 @@ namespace AutomatInformationSystem
     {
 
         private string _potrosnja;
+        private string _lokacija;
         public int ID { get; set; }
 
-        public int Sifra { get; set; }
+        public long Sifra { get; set; }
 
-        public string Lokacija { get; set; }
+        public string Lokacija { get { return _lokacija; } set { if (value.Length <= 0) { _lokacija = "Empty"; } else { _lokacija = value; } } }
 
         public string Tip { get; set; }
 
@@ -25,7 +26,7 @@ namespace AutomatInformationSystem
 
         }
 
-        public AutomatItemCardViewModel(int id, int sifra, string lokacija, string tip, string potrosnja )
+        public AutomatItemCardViewModel(int id, long sifra, string lokacija, string tip, string potrosnja )
         {
             ID = id;
             Sifra = sifra;

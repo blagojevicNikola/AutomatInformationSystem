@@ -51,6 +51,66 @@ namespace AutomatInformationSystem
             return resultList;
         }
 
+        public List<AutomatFullInfoDTO> GetAllAutomatiFullInfo()
+        {
+            List<AutomatFullInfoDTO> resultList = new List<AutomatFullInfoDTO>();
+            List<string> tipovi = new List<string> { "automat_hrane_info", "automat_kafe_info" };
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+                connection.Open();
+                foreach (string s in tipovi)
+                {
+                    MySqlCommand command = connection.CreateCommand();
+                    command.CommandText = "select * from " + s;
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32(0);
+                        DateTime datumPostavljanja = reader.GetDateTime(1);
+                        int? objekatId;
+                        if (reader.IsDBNull(2))
+                        {
+                            objekatId = null;
+                        }
+                        else
+                        {
+                            objekatId = reader.GetInt32(2);
+                        }
+                        string tip = reader.GetString(3);
+                        double potrosnja = (double)reader.GetDecimal(4);
+                        long serijskiBroj = reader.GetInt64(5);
+                        string nazivObjekta = "";
+                        if(!reader.IsDBNull(7))
+                        {
+                            nazivObjekta = reader.GetString(7);
+                        }
+                        string grad = "";
+                        if(!reader.IsDBNull(8))
+                        {
+                            grad = reader.GetString(8);
+                        }
+                        string adresa = "";
+                        if(!reader.IsDBNull(9))
+                        {
+                            adresa = reader.GetString(9);
+                        }
+                        if (s == "automat_hrane_info")
+                        {
+                            string kapacitet = reader.GetInt32(6).ToString();
+                            resultList.Add(new AutomatFullInfoDTO(id, datumPostavljanja,objekatId,tip,potrosnja,serijskiBroj,kapacitet,nazivObjekta,grad,adresa));
+                        }
+                        else
+                        {
+                            string kapacitet = reader.GetDecimal(6).ToString();
+                            resultList.Add(new AutomatFullInfoDTO(id, datumPostavljanja, objekatId, tip, potrosnja, serijskiBroj, kapacitet, nazivObjekta, grad, adresa));
+                        }
+                    }
+                    reader.Close();
+                }
+            }
+            return resultList;
+        }
+
         public AutomatDTO GetAutomatById()
         {
             throw new NotImplementedException();

@@ -94,9 +94,14 @@ namespace AutomatInformationSystem
             }
         }
 
-        private int getSelectedObjekatId()
+        private int? getSelectedObjekatId()
         {
-            return ListaObjekata.ToList().Find(s => s.Izabran == true).ID;
+            ObjektiItemViewModel objTemp = ListaObjekata.ToList().Find(s => s.Izabran == true);
+            if(objTemp!=null)
+            {
+                return objTemp.ID;
+            }
+            return null;
         }
 
         protected void NotifyPropertyChanged(String info)

@@ -20,7 +20,7 @@ namespace AutomatInformationSystem
                new AutomatItemCardViewModel
                {
                    ID = 1,
-                   Sifra = "13543474831",
+                   Sifra = 135434731,
                    Lokacija = "Neka tamo lijeva 9",
                    Tip = "Kafa",
                    Potrosnja = "231"
@@ -28,7 +28,7 @@ namespace AutomatInformationSystem
                new AutomatItemCardViewModel
                {
                    ID = 2,
-                   Sifra = "13546374831",
+                   Sifra = 135463748,
                    Lokacija = "Neka tamo desna 4",
                    Tip = "Hrana",
                    Potrosnja = "231"
@@ -36,7 +36,7 @@ namespace AutomatInformationSystem
                new AutomatItemCardViewModel
                {
                    ID = 1,
-                   Sifra = "13361174831",
+                   Sifra = 13361174,
                    Lokacija = "Neka tamo nesto 41",
                    Tip = "Kafa",
                    Potrosnja = "231"
@@ -44,7 +44,7 @@ namespace AutomatInformationSystem
                 new AutomatItemCardViewModel
                {
                    ID = 1,
-                   Sifra = "13543474831",
+                   Sifra = 13543474,
                    Lokacija = "Neka tamo lijeva 9",
                    Tip = "Hrana"
                    ,
@@ -53,7 +53,7 @@ namespace AutomatInformationSystem
                new AutomatItemCardViewModel
                {
                    ID = 2,
-                   Sifra = "13546374831",
+                   Sifra = 13546374,
                    Lokacija = "Neka tamo desna 4",
                    Tip = "Kafa"
                    ,
@@ -62,7 +62,7 @@ namespace AutomatInformationSystem
                new AutomatItemCardViewModel
                {
                    ID = 1,
-                   Sifra = "13361174831",
+                   Sifra = 13361174,
                    Lokacija = "Neka tamo nesto 41",
                    Tip = "Hrana",
                    Potrosnja = "231"

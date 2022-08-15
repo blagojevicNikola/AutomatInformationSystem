@@ -13,7 +13,7 @@ namespace AutomatInformationSystem
         private AutomatItemCardDesignView()
         {
             ID = 1;
-            Sifra = "12345678911";
+            Sifra = 12345678;
             Lokacija = "ETF - Banja Luka (Srpskih rudara 9, Banja Luka)";
             Tip = "Hrana";
             Potrosnja = "1231";

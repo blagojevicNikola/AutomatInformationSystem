@@ -22,13 +22,14 @@ namespace AutomatInformationSystem
         {
             this.AddAutomatCommand = new RelayCommand(addAutomatCommand);
             IAutomatDAO dao = new AutomatiImplDAO();
-            List<AutomatDTO> listaAutomata = dao.GetAllAutomati();
+            List<AutomatFullInfoDTO> listaAutomata = dao.GetAllAutomatiFullInfo();
             ObservableCollection<AutomatItemCardViewModel> obsAutomati = new ObservableCollection<AutomatItemCardViewModel>();
-            foreach(AutomatDTO a in listaAutomata)
-            {
-                
-            }
-            //listaAutomata.ForEach(s => obsAutomati.Add(new AutomatItemCardViewModel(s.ID,s)))
+            //foreach(AutomatDTO a in listaAutomata)
+            //{
+
+            //}
+            listaAutomata.ForEach(s => obsAutomati.Add(new AutomatItemCardViewModel(s.ID, s.SerijskiBroj, s.ObjekatInfo, s.Tip, s.Potrosnja.ToString())));
+            Items = obsAutomati;
         }
 
         private void addAutomatCommand()
