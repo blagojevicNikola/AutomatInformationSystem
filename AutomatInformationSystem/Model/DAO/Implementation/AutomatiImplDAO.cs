@@ -10,9 +10,32 @@ namespace AutomatInformationSystem
 {
     public class AutomatiImplDAO : IAutomatDAO
     {
-        public void deleteAutomat(AutomatDTO automat)
+        public void deleteAutomat(int id, string tip)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+                MySqlCommand command = connection.CreateCommand();
+                connection.Open();
+
+                if (tip=="Hrana")
+                {
+                    command.Parameters.Clear();
+                    command.CommandText = "delete from automat_hrane where AUTOMAT_idAutomat=@idAutomat";
+                    command.Parameters.AddWithValue("@idAutomat", id);
+                    command.ExecuteNonQuery();
+                }
+                else
+                {
+                    command.Parameters.Clear();
+                    command.CommandText = "delete from automat_kafe where AUTOMAT_idAutomat=@idAutomat";
+                    command.Parameters.AddWithValue("@idAutomat", id);
+                    command.ExecuteNonQuery();
+                }
+                command.Parameters.Clear();
+                command.CommandText = "delete from automat where idAutomat=@idAutomat";
+                command.Parameters.AddWithValue("@idAutomat", id);
+                command.ExecuteNonQuery();
+            }
         }
 
         public List<AutomatDTO> GetAllAutomati()

@@ -16,6 +16,6 @@ namespace AutomatInformationSystem
 
         void updateAutomat(AutomatDTO automat, string kapacitet);
 
-        void deleteAutomat(AutomatDTO automat);
+        void deleteAutomat(int id, string tip);
     }
 }

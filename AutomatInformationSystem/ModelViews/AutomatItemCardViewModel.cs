@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace AutomatInformationSystem
 {
@@ -21,9 +22,11 @@ namespace AutomatInformationSystem
 
         public string Potrosnja { get { return _potrosnja; } set { _potrosnja = value + "W"; } }
 
+        public ICommand DeleteCommand { get; set; }
+
         public AutomatItemCardViewModel()
         {
-
+            DeleteCommand = new RelayCommand(deleteAutomat);
         }
 
         public AutomatItemCardViewModel(int id, long sifra, string lokacija, string tip, string potrosnja )
@@ -33,6 +36,13 @@ namespace AutomatInformationSystem
             Lokacija = lokacija;
             Tip = tip;
             Potrosnja = potrosnja;
+            DeleteCommand = new RelayCommand(deleteAutomat);
+        }
+
+        private void deleteAutomat()
+        {
+            IAutomatDAO dao = new AutomatiImplDAO();
+            dao.deleteAutomat(ID, Tip);
         }
     }
 }
