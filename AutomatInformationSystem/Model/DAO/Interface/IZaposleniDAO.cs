@@ -13,7 +13,7 @@ namespace AutomatInformationSystem
 
         void saveZaposleni(string ime, string prezime, string telefon, DateTime datumRodjenja, string tip);
 
-        void deleteZaposleni(ZaposleniDTO zaposleni);
+        void deleteZaposleni(int id, string tip);
 
         void updateZaposleni(ZaposleniDTO zaposleni);
     }

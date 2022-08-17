@@ -9,20 +9,27 @@ using System.Windows.Input;
 
 namespace AutomatInformationSystem
 {
-    public class AddingZaposleniViewModel : INotifyPropertyChanged
+    public class UpdateZaposleniViewModel: INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
         public event EventHandler ClosingRequest;
 
+        private int id;
         private string ime;
         private string prezime;
         private string telefon;
         private string datumRodjenja;
         private string tip;
 
-        public AddingZaposleniViewModel()
+        public UpdateZaposleniViewModel(int id, string ime, string prezime, string telefon, string datumRodjenja, string tip)
         {
+            this.id = id;
+            Ime = ime;
+            Prezime = prezime;
+            Telefon = telefon;
+            DatumRodjenja = datumRodjenja;
+            Tip = tip;
             this.OkCommand = new RelayCommand(okExecute);
         }
 
@@ -35,21 +42,29 @@ namespace AutomatInformationSystem
         public string Telefon { get { return telefon; } set { telefon = value; NotifyPropertyChanged("Telefon"); } }
         public string DatumRodjenja { get { return datumRodjenja; } set { datumRodjenja = value; NotifyPropertyChanged("Datum"); } }
 
-
-        private void okExecute()
-        {
-            ZaposleniImplDAO dao = new ZaposleniImplDAO();
-            DateTime datum = DateTime.ParseExact(datumRodjenja, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            dao.saveZaposleni(Ime, Prezime, Telefon, datum, Tip);
-            ClosingRequest(this, EventArgs.Empty);
-        }
-
         protected void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
+        }
+
+        private void okExecute()
+        {
+            IZaposleniDAO dao = new ZaposleniImplDAO();
+            DateTime datumRodj = DateTime.ParseExact(DatumRodjenja, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            ZaposleniDTO newZaposleni = null;
+            if(Tip=="Radnik")
+            {
+                newZaposleni =new RadnikDTO(this.id, Ime, Prezime, Telefon, datumRodj, Tip);
+            }
+            else
+            {
+                newZaposleni = new ServiserDTO(this.id, Ime, Prezime, Telefon, datumRodj, Tip);
+            }
+            dao.updateZaposleni(newZaposleni);
+            ClosingRequest(this, EventArgs.Empty);
         }
     }
 }

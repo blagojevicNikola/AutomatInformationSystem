@@ -16,5 +16,9 @@ namespace AutomatInformationSystem
         void deleteSastojak(SastojciDTO sastojak);
 
         void updateSastojak(SastojciDTO sastojak);
+
+        List<SastojciDTO> GetSelectedSastojci(int id);
+        List<SastojciDTO> GetAvailableSastojci(int id);
+        
     }
 }

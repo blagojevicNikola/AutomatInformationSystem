@@ -13,8 +13,8 @@ namespace AutomatInformationSystem
 
         long saveProizvod(string naziv, string tip, List<SastojciDTO> sastojci);
 
-        void deleteProizvod(ProizvodDTO proizvod);
+        void deleteProizvod(int id, string tip);
 
-        void updateProizvod(ProizvodDTO proizvod);
+        void updateProizvod(int id, string naziv,string tip, List<int> addSastojci, List<int> removeSastojci);
     }
 }

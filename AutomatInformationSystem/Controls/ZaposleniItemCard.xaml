@@ -109,13 +109,15 @@
             <Button Width="30"
                     Height="30"
                     Margin="5,0,5,0"
-                    Grid.Column="0">
+                    Grid.Column="0"
+                    Command="{Binding UpdateCommand}">
                     <Image Source="/Assets/Images/edit.png"/>
                 </Button>
             <Button Width="30"
                     Height="30"
                     Margin="5,0,8,0"
-                    Grid.Column="1">
+                    Grid.Column="1"
+                    Command="{Binding DeleteCommand}">
                     <Image Source="/Assets/Images/trashcan.png"/>
                 </Button>
         </Grid>

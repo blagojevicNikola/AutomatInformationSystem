@@ -12,6 +12,6 @@ namespace AutomatInformationSystem
         ObjekatDTO GetObjekatById(int id);
         void saveObjekat(ObjekatDTO objekat);
         void updateObjekat(ObjekatDTO objekat);
-        void deleteObjekat(ObjekatDTO objeakt);
+        void deleteObjekat(int id);
     }
 }

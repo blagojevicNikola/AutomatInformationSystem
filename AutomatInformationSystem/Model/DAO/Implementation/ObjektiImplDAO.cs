@@ -10,7 +10,7 @@ namespace AutomatInformationSystem
 {
     public class ObjektiImplDAO : IObjektiDAO
     {
-        public void deleteObjekat(ObjekatDTO objeakt)
+        public void deleteObjekat(int id)
         {
             throw new NotImplementedException();
         }

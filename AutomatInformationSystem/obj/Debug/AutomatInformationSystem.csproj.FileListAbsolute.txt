@@ -49,3 +49,7 @@ C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\bin
 C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\bin\Debug\MySql.Data.xml
 C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\AutomatInformationSystem.csproj.CopyComplete
+C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\UpdateProizvodWindow.g.cs
+C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\UpdateProizvodWindow.baml
+C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\UpdateZaposleniWindow.g.cs
+C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\UpdateZaposleniWindow.baml

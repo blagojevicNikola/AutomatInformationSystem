@@ -10,9 +10,35 @@ namespace AutomatInformationSystem
 {
     public class ProizvodiImplDAO : IProizvodDAO
     {
-        public void deleteProizvod(ProizvodDTO proizvod)
+        public void deleteProizvod(int id, string tip)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+                MySqlCommand command = connection.CreateCommand();
+                connection.Open();
+
+                if (tip == "Hrana")
+                {
+                    command.Parameters.Clear();
+                    command.CommandText = "delete from hrana where PROIZVOD_idProizvod=@id";
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
+                }
+                else
+                {
+                    command.Parameters.Clear();
+                    command.CommandText = "delete from kafa where PROIZVOD_idProizvod=@id";
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                    command.CommandText = "delete from kafa_od_sastojaka where KAFA_PROIZVOD_idProizvod=@id";
+                    command.Parameters.AddWithValue("@id", id);
+                }
+                command.Parameters.Clear();
+                command.CommandText = "delete from proizvod where idProizvod=@id";
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+            }
         }
 
         public List<ProizvodDTO> GetAllProizvod()
@@ -89,9 +115,38 @@ namespace AutomatInformationSystem
             return id;
         }
 
-        public void updateProizvod(ProizvodDTO proizvod)
+        public void updateProizvod(int id, string naziv,string tip, List<int> addSastojci, List<int> removeSastojci)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+                MySqlCommand command = connection.CreateCommand();
+                connection.Open();
+
+                
+                command.CommandText = "update proizvod set Naziv=@naziv where idProizvod=@id";
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@Naziv", naziv);
+                command.ExecuteNonQuery();
+                if(tip=="Kafa")
+                {
+                    command.CommandText = "insert into kafa_od_sastojaka VALUES(@idSastojka, @idProizvoda)";
+                    foreach (int s in addSastojci)
+                    {
+                        command.Parameters.Clear();
+                        command.Parameters.AddWithValue("@idSastojka", s);
+                        command.Parameters.AddWithValue("@idProizvoda", id);
+                        command.ExecuteNonQuery();
+                    }
+                    command.CommandText = "delete from kafa_od_sastojaka where SASTOJCI_idSastojci=@idSastojka and KAFA_PROIZVOD_idProizvod=@idProizvoda";
+                    foreach(int s in removeSastojci)
+                    {
+                        command.Parameters.Clear();
+                        command.Parameters.AddWithValue("@idSastojka", s);
+                        command.Parameters.AddWithValue("@idProizvoda", id);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
         }
     }
 }

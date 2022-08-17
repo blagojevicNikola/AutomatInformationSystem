@@ -83,6 +83,8 @@
     <Compile Include="ModelViews\ProizvodItemCardViewModel.cs" />
     <Compile Include="ModelViews\RelayCommand.cs" />
     <Compile Include="ModelViews\SastojciViewModel.cs" />
+    <Compile Include="ModelViews\UpdateProizvodViewModel.cs" />
+    <Compile Include="ModelViews\UpdateZaposleniViewModel.cs" />
     <Compile Include="ModelViews\ZaposleniItemCardViewModel.cs" />
     <Compile Include="ModelViews\ZaposleniPageModelView.cs" />
     <Compile Include="Model\DAO\Implementation\AutomatiImplDAO.cs" />
@@ -130,6 +132,12 @@
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UpdateProizvodWindow.xaml.cs">
+      <DependentUpon>UpdateProizvodWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateZaposleniWindow.xaml.cs">
+      <DependentUpon>UpdateZaposleniWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controls\AutomatItemCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,6 +183,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateProizvodWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateZaposleniWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

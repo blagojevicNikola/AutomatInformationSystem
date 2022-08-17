@@ -12,9 +12,32 @@ namespace AutomatInformationSystem
 {
     public class ZaposleniImplDAO : IZaposleniDAO
     {
-        public void deleteZaposleni(ZaposleniDTO zaposleni)
+        public void deleteZaposleni(int id, string tip)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+                MySqlCommand command = connection.CreateCommand();
+                connection.Open();
+
+                if (tip == "Serviser")
+                {
+                    command.Parameters.Clear();
+                    command.CommandText = "delete from serviser where ZAPOSLENI_Sifra=@sifra";
+                    command.Parameters.AddWithValue("@sifra", id);
+                    command.ExecuteNonQuery();
+                }
+                else
+                {
+                    command.Parameters.Clear();
+                    command.CommandText = "delete from radnik where ZAPOSLENI_Sifra=@sifra";
+                    command.Parameters.AddWithValue("@sifra", id);
+                    command.ExecuteNonQuery();
+                }
+                command.Parameters.Clear();
+                command.CommandText = "delete from zaposleni where Sifra=@sifra";
+                command.Parameters.AddWithValue("@sifra", id);
+                command.ExecuteNonQuery();
+            }
         }
 
         public List<ZaposleniDTO> GetAllZaposleni()
@@ -89,7 +112,19 @@ namespace AutomatInformationSystem
 
         public void updateZaposleni(ZaposleniDTO zaposleni)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "update zaposleni set Ime=@ime, Prezime=@prezime, Telefon=@telefon, DatumRodjenja=@datumRodjenja where Sifra=@id";
+                //command.Parameters.AddWithValue("@Sifra", 1);
+                command.Parameters.AddWithValue("@Ime", zaposleni.Ime);
+                command.Parameters.AddWithValue("@Prezime", zaposleni.Prezime);
+                command.Parameters.AddWithValue("@Telefon", zaposleni.Telefon);
+                command.Parameters.AddWithValue("@DatumRodjenja", zaposleni.DatumRodjenja);
+                command.Parameters.AddWithValue("@id", zaposleni.Sifra);
+                command.ExecuteNonQuery();
+            }
         }
     }
 }

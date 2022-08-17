@@ -22,6 +22,13 @@ namespace AutomatInformationSystem
             Naziv = naziv;
         }
 
+        public SastojciViewModel(int id, string naziv, bool izabrano)
+        {
+            Izabrano = izabrano;
+            ID = id;
+            Naziv = naziv;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void NotifyPropertyChanged(String info)
