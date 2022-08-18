@@ -26,6 +26,14 @@ namespace AutomatInformationSystem
 
         }
 
+        public ObjektiItemViewModel(int id, string naziv, string adresa, bool izabran)
+        {
+            Izabran = izabran;
+            ID = id;
+            Naziv = naziv;
+            Adresa = adresa;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void NotifyPropertyChanged(String info)
         {

@@ -53,3 +53,7 @@ C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj
 C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\UpdateProizvodWindow.baml
 C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\UpdateZaposleniWindow.g.cs
 C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\UpdateZaposleniWindow.baml
+C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\UpdateAutomatWindow.g.cs
+C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\UpdateAutomatWindow.baml
+C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\ManageAutomatWindow.g.cs
+C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\ManageAutomatWindow.baml

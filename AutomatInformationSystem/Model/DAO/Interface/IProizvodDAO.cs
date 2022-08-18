@@ -16,5 +16,11 @@ namespace AutomatInformationSystem
         void deleteProizvod(int id, string tip);
 
         void updateProizvod(int id, string naziv,string tip, List<int> addSastojci, List<int> removeSastojci);
+
+        List<ProizvodDTO> GetAllProizvodHrana();
+
+        List<ProizvodDTO> GetAllProizvodKafa();
+        List<NudiProizvodDTO> GetAllHranaOfAutomat(int id);
+        List<NudiProizvodDTO> GetAllKafaOfAutomat(int id);
     }
 }

@@ -42,7 +42,7 @@ namespace AutomatInformationSystem
             using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
             {
                 MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "select idSastojci, Naziv from sastojci s left join kafa_od_sastojaka k on s.idSastojci = k.SASTOJCI_idSastojci where k.KAFA_PROIZVOD_idProizvod !=@idProizvoda or k.KAFA_PROIZVOD_idProizvod is null";
+                command.CommandText = "select idSastojci, Naziv from sastojci s left join kafa_od_sastojaka k on s.idSastojci = k.SASTOJCI_idSastojci where idSastojci not in (select SASTOJCI_idSastojci from kafa_od_sastojaka where KAFA_PROIZVOD_idProizvod=@idProizvoda)";
                 command.Parameters.AddWithValue("@idProizvoda", id);
                 connection.Open();
                 MySqlDataReader reader = command.ExecuteReader();

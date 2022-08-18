@@ -11,10 +11,10 @@ namespace AutomatInformationSystem
         List<AutomatDTO> GetAllAutomati();
 
         List<AutomatFullInfoDTO> GetAllAutomatiFullInfo();
-        AutomatDTO GetAutomatById();
+        AutomatDTO GetAutomatById(int id, string tip);
         void saveAutomat(AutomatDTO automat);
 
-        void updateAutomat(AutomatDTO automat, string kapacitet);
+        void updateAutomat(AutomatDTO automat);
 
         void deleteAutomat(int id, string tip);
     }

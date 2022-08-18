@@ -134,9 +134,65 @@ namespace AutomatInformationSystem
             return resultList;
         }
 
-        public AutomatDTO GetAutomatById()
+        public AutomatDTO GetAutomatById(int id, string tip)
         {
-            throw new NotImplementedException();
+            AutomatDTO result = null;
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+                MySqlCommand command = connection.CreateCommand();
+                connection.Open();
+                if(tip=="Hrana")
+                {
+                    command.CommandText = "select * from automat_hrane_info where idAutomat=@id";
+                    command.Parameters.AddWithValue("@id", id);
+                    MySqlDataReader reader =command.ExecuteReader();
+                    while(reader.Read())
+                    {
+                        int idAutomata = reader.GetInt32(0);
+                        DateTime datumPost = reader.GetDateTime(1);
+                        int? objectId;
+                        if(reader.IsDBNull(2))
+                        {
+                            objectId = null;
+                        }
+                        else
+                        {
+                            objectId = reader.GetInt32(2);
+                        }
+                        string tipAutomata = reader.GetString(3);
+                        double potrosnja = (double)reader.GetDecimal(4);
+                        long serijskiBroj = reader.GetInt64(5);
+                        int kapacitet = reader.GetInt32(6);
+                        result = new AutomatHraneDTO(idAutomata, datumPost, objectId, tipAutomata, potrosnja, serijskiBroj, kapacitet);
+                    }
+                }
+                else
+                {
+                    command.CommandText = "select * from automat_kafe_info where idAutomat=@id";
+                    command.Parameters.AddWithValue("@id", id);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int idAutomata = reader.GetInt32(0);
+                        DateTime datumPost = reader.GetDateTime(1);
+                        int? objectId;
+                        if (reader.IsDBNull(2))
+                        {
+                            objectId = null;
+                        }
+                        else
+                        {
+                            objectId = reader.GetInt32(2);
+                        }
+                        string tipAutomata = reader.GetString(3);
+                        double potrosnja = (double)reader.GetDecimal(4);
+                        long serijskiBroj = reader.GetInt64(5);
+                        double kapacitet = (double)reader.GetDecimal(6);
+                        result = new AutomatKafeDTO(idAutomata, datumPost, objectId, tipAutomata, potrosnja, serijskiBroj, kapacitet);
+                    }
+                }
+                return result;
+            }
         }
 
         public void saveAutomat(AutomatDTO automat)
@@ -179,9 +235,42 @@ namespace AutomatInformationSystem
            
         }
 
-        public void updateAutomat(AutomatDTO automat, string kapacitet)
+        public void updateAutomat(AutomatDTO automat)
         {
-            throw new NotImplementedException();
+            
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "update automat set DatumPostavljanja=@datumPostavljanja, OBJEKAT_idObjekat=@objekatId, Tip=@tip, Potrosnja=@potrosnja, SerijskiBroj=@serijskiBroj where idAutomat=@id";
+                command.Parameters.AddWithValue("@ID", automat.ID);
+                command.Parameters.AddWithValue("@DatumPostavljanja", automat.DatumPostavljanja);
+                command.Parameters.AddWithValue("@ObjekatId", automat.ObjekatID);
+                command.Parameters.AddWithValue("@Tip", automat.Tip);
+                command.Parameters.AddWithValue("@Potrosnja", automat.Potrosnja);
+                command.Parameters.AddWithValue("@SerijskiBroj", automat.SerijskiBroj);
+                command.ExecuteNonQuery();
+                if (automat.Tip == "Hrana")
+                {
+                    command.Parameters.Clear();
+                    command.CommandText = "update automat_hrane set Kapacitet=@kapacitet where AUTOMAT_idAutomat=@id";
+                    command.Parameters.AddWithValue("@id", automat.ID);
+                    AutomatHraneDTO temp = (AutomatHraneDTO)automat;
+                    command.Parameters.AddWithValue("@kapacitet", temp.Kapacitet);
+                    command.ExecuteNonQuery();
+                }
+                else
+                {
+                    command.Parameters.Clear();
+                    command.CommandText = "update automat_hrane set KapacitetKontejnera=@kapacitet where AUTOMAT_idAutomat=@id";
+                    command.Parameters.AddWithValue("@id", automat.ID);
+                    AutomatKafeDTO temp = (AutomatKafeDTO)automat;
+                    command.Parameters.AddWithValue("@kapacitet", temp.Kapacitet);
+                    command.ExecuteNonQuery();
+                }
+
+            }
         }
     }
 }

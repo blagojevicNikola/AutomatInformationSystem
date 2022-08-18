@@ -89,7 +89,8 @@
                       FontWeight="SemiBold"
                       SelectedIndex="0"
                       FontSize="15"
-                      Text="{Binding Path=Tip, Mode=OneWayToSource}">
+                      IsEnabled="False"
+                      Text="{Binding Path=Tip, Mode=TwoWay}">
                     <ComboBoxItem>Hrana</ComboBoxItem>
                     <ComboBoxItem>Kafa</ComboBoxItem>
                 </ComboBox>

@@ -68,6 +68,72 @@ namespace AutomatInformationSystem
             return resultList;
         }
 
+        public List<ProizvodDTO> GetAllProizvodHrana()
+        {
+            List<ProizvodDTO> resultList = new List<ProizvodDTO>();
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "select * from proizvod_hrana";
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    int id = reader.GetInt32(0);
+                    string naziv = reader.GetString(1);
+                    string tip = reader.GetString(2);
+                    resultList.Add(new HranaDTO(id, naziv, tip));
+                }
+            }
+            return resultList;
+        }
+
+        public List<ProizvodDTO> GetAllProizvodKafa()
+        {
+            List<ProizvodDTO> resultList = new List<ProizvodDTO>();
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "select * from proizvod_kafa";
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    int id = reader.GetInt32(0);
+                    string naziv = reader.GetString(1);
+                    string tip = reader.GetString(2);
+                    resultList.Add(new HranaDTO(id, naziv, tip));
+                }
+            }
+            return resultList;
+        }
+
+        public List<NudiProizvodDTO> GetAllHranaOfAutomat(int id)
+        {
+            List<NudiProizvodDTO> resultList = new List<NudiProizvodDTO>();
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "select idProizvod, Naziv, Tip, Kolicina, Cijena from (select * from proizvod p natural join ah_nudi_h h natural join automat a where idAutomat = @id) as ubaceni_proizvodi";
+                command.Parameters.AddWithValue("@id",id);
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    int idProizvoda = reader.GetInt32(0);
+                    string naziv = reader.GetString(1);
+                    string tip = reader.GetString(2);
+                    double cijena = (double)reader.GetDecimal(3);
+                    int kolicina = reader.GetInt32(4);
+                    
+                    resultList.Add(new NudiProizvodDTO(idProizvoda, naziv, tip, cijena, kolicina));
+                   
+
+                }
+            }
+            return resultList;
+        }
+
         public ProizvodDTO GetProizvodById(int id)
         {
             throw new NotImplementedException();
@@ -147,6 +213,28 @@ namespace AutomatInformationSystem
                     }
                 }
             }
+        }
+
+        public List<NudiProizvodDTO> GetAllKafaOfAutomat(int id)
+        {
+            List<NudiProizvodDTO> resultList = new List<NudiProizvodDTO>();
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "select idProizvod, Naziv, Tip, Cijena from (select * from proizvod p natural join ak_nudi_k k natural join automat a where idAutomat = @id) as ubaceni_proizvodi ";
+                command.Parameters.AddWithValue("@id", id);
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    int idProizvoda = reader.GetInt32(0);
+                    string naziv = reader.GetString(1);
+                    string tip = reader.GetString(2);
+                    double cijena = (double)reader.GetDecimal(3);
+                    resultList.Add(new NudiProizvodDTO(idProizvoda, naziv, tip, cijena, null));
+                }
+            }
+            return resultList;
         }
     }
 }

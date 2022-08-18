@@ -77,12 +77,16 @@
     <Compile Include="ModelViews\AddingZaposleniViewModel.cs" />
     <Compile Include="ModelViews\AutomatiPageModelView.cs" />
     <Compile Include="ModelViews\AutomatItemCardViewModel.cs" />
+    <Compile Include="ModelViews\DostupanProizvodViewModel.cs" />
+    <Compile Include="ModelViews\IzabranProizvodViewModel.cs" />
+    <Compile Include="ModelViews\ManageAutomatViewModel.cs" />
     <Compile Include="ModelViews\ObjektiItemViewModel.cs" />
     <Compile Include="ModelViews\ParameterRelayCommand.cs" />
     <Compile Include="ModelViews\ProizvodiPageModelView.cs" />
     <Compile Include="ModelViews\ProizvodItemCardViewModel.cs" />
     <Compile Include="ModelViews\RelayCommand.cs" />
     <Compile Include="ModelViews\SastojciViewModel.cs" />
+    <Compile Include="ModelViews\UpdateAutomatViewModel.cs" />
     <Compile Include="ModelViews\UpdateProizvodViewModel.cs" />
     <Compile Include="ModelViews\UpdateZaposleniViewModel.cs" />
     <Compile Include="ModelViews\ZaposleniItemCardViewModel.cs" />
@@ -106,6 +110,7 @@
     <Compile Include="Model\DTO\HranaDTO.cs" />
     <Compile Include="Model\DTO\KafaDTO.cs" />
     <Compile Include="Model\DTO\LokacijaDTO.cs" />
+    <Compile Include="Model\DTO\NudiProizvodDTO.cs" />
     <Compile Include="Model\DTO\ObjekatDTO.cs" />
     <Compile Include="Model\DTO\ProizvodDTO.cs" />
     <Compile Include="Model\DTO\RadnikDTO.cs" />
@@ -131,6 +136,12 @@
     </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManageAutomatWindow.xaml.cs">
+      <DependentUpon>ManageAutomatWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateAutomatWindow.xaml.cs">
+      <DependentUpon>UpdateAutomatWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdateProizvodWindow.xaml.cs">
       <DependentUpon>UpdateProizvodWindow.xaml</DependentUpon>
@@ -183,6 +194,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ManageAutomatWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateAutomatWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
