@@ -26,11 +26,13 @@ namespace AutomatInformationSystem
         public ICommand DeleteCommand { get; set; }
         public ICommand UpdateCommand { get; set; }
         public ICommand ManageCommand { get; set; }
+        public ICommand FillCommand { get; set; }
         public AutomatItemCardViewModel()
         {
             DeleteCommand = new RelayCommand(deleteAutomat);
             UpdateCommand = new RelayCommand(updateAutomat);
             ManageCommand = new RelayCommand(manageAutomat);
+            FillCommand = new RelayCommand(fillAutomat);
         }
 
         public AutomatItemCardViewModel(int id, long sifra, string lokacija, string tip, string potrosnja )
@@ -43,6 +45,7 @@ namespace AutomatInformationSystem
             DeleteCommand = new RelayCommand(deleteAutomat);
             UpdateCommand = new RelayCommand(updateAutomat);
             ManageCommand = new RelayCommand(manageAutomat);
+            FillCommand = new RelayCommand(fillAutomat);
         }
 
         private void deleteAutomat()
@@ -66,6 +69,15 @@ namespace AutomatInformationSystem
             ManageAutomatViewModel vm = new ManageAutomatViewModel(ID, Tip);
             win.DataContext = vm;
             vm.ClosingRequest += (sender, a) => win.Close();
+            win.Show();
+        }
+
+        private void fillAutomat()
+        {
+            FillAutomatWindow win = new FillAutomatWindow();
+            FillAutomatViewModel vm = new FillAutomatViewModel(ID, Tip);
+            win.DataContext = vm;
+            vm.ClosingRequest += (sender,a) => win.Close();
             win.Show();
         }
     }
