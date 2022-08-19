@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutomatInformationSystem.Views"
         mc:Ignorable="d"
-        Title="ManageAutomatWindow" Height="450" Width="800">
+        Title="ManageAutomatWindow" Height="420" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Content="32402"
+        <Label Content="{Binding Sifra}"
                FontSize="32"
                FontWeight="Bold"
                Padding="0"
@@ -155,7 +155,8 @@
                         Width="100"
                         Height="40"
                         Margin="0,0,5,0"
-                        HorizontalAlignment="Right"/>
+                        HorizontalAlignment="Right"
+                        Command="{Binding OkCommand}"/>
             </Grid>
         </Grid>
     </Grid>

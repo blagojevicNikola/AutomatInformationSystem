@@ -123,8 +123,8 @@ namespace AutomatInformationSystem
                     int idProizvoda = reader.GetInt32(0);
                     string naziv = reader.GetString(1);
                     string tip = reader.GetString(2);
-                    double cijena = (double)reader.GetDecimal(3);
-                    int kolicina = reader.GetInt32(4);
+                    double cijena = (double)reader.GetDecimal(4);
+                    int kolicina = reader.GetInt32(3);
                     
                     resultList.Add(new NudiProizvodDTO(idProizvoda, naziv, tip, cijena, kolicina));
                    
@@ -235,6 +235,65 @@ namespace AutomatInformationSystem
                 }
             }
             return resultList;
+        }
+
+        public void insertHranaInAutomat(int automatId, int proizvodId, double cijena, int kolicina)
+        {
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "insert into ah_nudi_h VALUES(@idAutomat, @idProizvod, @Cijena,@Kolicina)";
+                //command.Parameters.AddWithValue("@Sifra", 1);
+                command.Parameters.AddWithValue("@idAutomat", automatId);
+                command.Parameters.AddWithValue("@idProizvod", proizvodId);
+                command.Parameters.AddWithValue("@Cijena", cijena);
+                command.Parameters.AddWithValue("@Kolicina", kolicina);
+                command.ExecuteNonQuery();
+                
+            }
+           
+        }
+
+        public void insertKafaInAutomat(int automatId, int proizvodId, double cijena)
+        {
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "insert into ak_nudi_k VALUES(@idAutomat, @idProizvod, @Cijena)";
+                //command.Parameters.AddWithValue("@Sifra", 1);
+                command.Parameters.AddWithValue("@idAutomat", automatId);
+                command.Parameters.AddWithValue("@idProizvod", proizvodId);
+                command.Parameters.AddWithValue("@Cijena", cijena);
+                command.ExecuteNonQuery();
+
+            }
+        }
+
+        public void deleteProizvodFromAutomat(int automatId, int proizvodId, string tip)
+        {
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                if(tip=="Hrana")
+                {
+                    command.CommandText = "delete from ah_nudi_h where idAutomat=@idAutomat and idProizvod=@idProizvod";
+                }
+                else
+                {
+                    command.CommandText = "delete from ak_nudi_k where idAutomat=@idAutomat and idProizvod=@idProizvod";
+                }
+                //command.Parameters.AddWithValue("@Sifra", 1);
+                command.Parameters.AddWithValue("@idAutomat", automatId);
+                command.Parameters.AddWithValue("@idProizvod", proizvodId);
+                command.ExecuteNonQuery();
+
+            }
         }
     }
 }

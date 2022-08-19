@@ -14,13 +14,13 @@ namespace AutomatInformationSystem
         public event PropertyChangedEventHandler PropertyChanged;
         public event EventHandler ClosingRequest;
 
-
         private string sifra;
         private string cijena;
         private string kolicina;
         private bool dostupnaKolicina;
         private int automatId;
         private string automatTip;
+        private List<NudiProizvodDTO> sadrzaniProizvodi;
         public string Sifra { get { return sifra; } set { sifra = value; NotifyPropertyChanged("Sifra"); } }
 
         public string Cijena
@@ -54,33 +54,68 @@ namespace AutomatInformationSystem
                 automatTip = automat.Tip;
                 IProizvodDAO proDao = new ProizvodiImplDAO();
                 List<ProizvodDTO> proizvodiTempList;
-                List<NudiProizvodDTO> ubaceniProizvodiList;
                 if (automat.Tip == "Hrana")
                 {
                     DostupnaKolicina = true;
                     proizvodiTempList = proDao.GetAllProizvodHrana();
-                    ubaceniProizvodiList = proDao.GetAllHranaOfAutomat(automatId);
+                    sadrzaniProizvodi = proDao.GetAllHranaOfAutomat(automatId);
                 }
                 else
                 {
                     DostupnaKolicina = false;
                     proizvodiTempList = proDao.GetAllProizvodKafa();
-                    ubaceniProizvodiList = proDao.GetAllKafaOfAutomat(automatId);
+                    sadrzaniProizvodi = proDao.GetAllKafaOfAutomat(automatId);
                 }
                 ObservableCollection<DostupanProizvodViewModel> obsProizvodi = new ObservableCollection<DostupanProizvodViewModel>();
                 proizvodiTempList.ForEach(s => obsProizvodi.Add(new DostupanProizvodViewModel(s.ID, s.Naziv)));
                 ObservableCollection<IzabranProizvodViewModel> obsIzabrani = new ObservableCollection<IzabranProizvodViewModel>();
-                ubaceniProizvodiList.ForEach(s => obsIzabrani.Add(new IzabranProizvodViewModel(s.ID, s.Naziv, s.Kolicina, s.Cijena)));
+                sadrzaniProizvodi.ForEach(s => obsIzabrani.Add(new IzabranProizvodViewModel(s.ID, s.Naziv, s.Kolicina, s.Cijena)));
                 ListaSvihProizvoda = obsProizvodi;
                 ListaIzabranihProizvoda = obsIzabrani;
                 AddCommand = new RelayCommand(addProizvod);
                 RemoveCommand = new RelayCommand(removeProizvod);
+                OkCommand = new RelayCommand(okExecute);
             }
 
         }
 
         private void okExecute()
         {
+            List<IzabranProizvodViewModel> noviProizvodi = new List<IzabranProizvodViewModel>();
+            List<NudiProizvodDTO> proizvodiZaBrisanje = new List<NudiProizvodDTO>();
+            foreach(IzabranProizvodViewModel i in ListaIzabranihProizvoda)
+            {
+                if(!sadrzaniProizvodi.Any(s => s.ID==i.ID))
+                {
+                    noviProizvodi.Add(i);
+                }
+            }
+            foreach(NudiProizvodDTO n in sadrzaniProizvodi)
+            {
+                if(!ListaIzabranihProizvoda.Any(s => s.ID==n.ID))
+                {
+                    proizvodiZaBrisanje.Add(n);
+                }
+            }
+            IProizvodDAO dao = new ProizvodiImplDAO();
+            if(automatTip=="Hrana")
+            {
+                foreach(IzabranProizvodViewModel i in noviProizvodi)
+                {
+                    dao.insertHranaInAutomat(automatId, i.ID, i.Cijena, i.Kolicina);
+                }
+            }
+            else
+            {
+                foreach(IzabranProizvodViewModel i in noviProizvodi)
+                {
+                    dao.insertKafaInAutomat(automatId, i.ID, i.Cijena);
+                }
+            }
+            foreach(NudiProizvodDTO n in proizvodiZaBrisanje)
+            {
+                dao.deleteProizvodFromAutomat(automatId, n.ID, automatTip);
+            }
             ClosingRequest(this, EventArgs.Empty);
         }
 
@@ -88,7 +123,7 @@ namespace AutomatInformationSystem
         {
             if(ToBeAdded!=null && double.TryParse(Cijena, out _) && !ListaIzabranihProizvoda.Any(s => s.ID==ToBeAdded.ID))
             {
-                if(int.TryParse(Kolicina, out _))
+                if(int.TryParse(Kolicina, out _) && automatTip=="Hrana")
                 {
                     ListaIzabranihProizvoda.Add(new IzabranProizvodViewModel(ToBeAdded.ID, ToBeAdded.Naziv, int.Parse(Kolicina), double.Parse(Cijena)));
                 }

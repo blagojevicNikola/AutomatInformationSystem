@@ -22,5 +22,9 @@ namespace AutomatInformationSystem
         List<ProizvodDTO> GetAllProizvodKafa();
         List<NudiProizvodDTO> GetAllHranaOfAutomat(int id);
         List<NudiProizvodDTO> GetAllKafaOfAutomat(int id);
+
+        void insertHranaInAutomat(int automatId, int proizvodId, double cijena, int kolicina);
+        void insertKafaInAutomat(int automatId, int proizvodId, double cijena);
+        void deleteProizvodFromAutomat(int automatId, int proizvodId, string tip);
     }
 }
