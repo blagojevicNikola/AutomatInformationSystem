@@ -74,11 +74,20 @@ namespace AutomatInformationSystem
 
         private void fillAutomat()
         {
-            FillAutomatWindow win = new FillAutomatWindow();
-            FillAutomatViewModel vm = new FillAutomatViewModel(ID, Tip);
-            win.DataContext = vm;
-            vm.ClosingRequest += (sender,a) => win.Close();
-            win.Show();
+            //FillAutomatWindow win = new FillAutomatWindow();
+            //FillAutomatViewModel vm = new FillAutomatViewModel(ID, Tip);
+            ChooseWorkerWindow win1 = new ChooseWorkerWindow();
+            ChooseWorkerViewModel vm = new ChooseWorkerViewModel();
+            win1.DataContext = vm;
+            vm.ClosingRequest += (sender,a) => { 
+                int radnikId = vm.getSelectedWorker().ID; 
+                win1.Close();
+                FillAutomatWindow win = new FillAutomatWindow();
+                FillAutomatViewModel vmm = new FillAutomatViewModel(ID, Tip, radnikId);
+                win.DataContext = vmm;
+                win.Show();
+            };
+            win1.Show();
         }
     }
 }

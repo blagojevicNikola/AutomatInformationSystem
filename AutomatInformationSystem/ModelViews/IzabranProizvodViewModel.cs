@@ -29,6 +29,13 @@ namespace AutomatInformationSystem
             Cijena = cijena;
         }
 
+        public IzabranProizvodViewModel(int id, string naziv, int kolicina)
+        {
+            ID = id;
+            Naziv = naziv;
+            Kolicina = kolicina;
+        }
+
         public IzabranProizvodViewModel(string naziv, double cijena)
         {
             Naziv = naziv;

@@ -19,6 +19,8 @@ namespace AutomatInformationSystem
 
         List<SastojciDTO> GetSelectedSastojci(int id);
         List<SastojciDTO> GetAvailableSastojci(int id);
+
+        List<SastojciDTO> GetAllSastojciForAutomat(int id);
         
     }
 }

@@ -16,5 +16,8 @@ namespace AutomatInformationSystem
         void deleteZaposleni(int id, string tip);
 
         void updateZaposleni(ZaposleniDTO zaposleni);
+
+        List<RadnikDTO> GetAllRadnici();
+        RadnikDTO GetRadnikById(int id);
     }
 }

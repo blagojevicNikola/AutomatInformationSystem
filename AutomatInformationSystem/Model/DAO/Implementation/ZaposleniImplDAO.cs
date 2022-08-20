@@ -40,6 +40,29 @@ namespace AutomatInformationSystem
             }
         }
 
+        public List<RadnikDTO> GetAllRadnici()
+        {
+            List<RadnikDTO> resultList = new List<RadnikDTO>();
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "select * from radnici";
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    int sifra = reader.GetInt32(0);
+                    string ime = reader.GetString(1);
+                    string prezime = reader.GetString(2);
+                    string telefon = reader.GetString(3);
+                    DateTime datum = reader.GetDateTime(4);
+                    string tip = reader.GetString(5);
+                    resultList.Add(new RadnikDTO(sifra, ime, prezime, telefon, datum, tip));
+                }
+            }
+            return resultList;
+        }
+
         public List<ZaposleniDTO> GetAllZaposleni()
         {
 
@@ -69,6 +92,32 @@ namespace AutomatInformationSystem
                 }
             }
             return resultList;
+        }
+
+        public RadnikDTO GetRadnikById(int id)
+        {
+            RadnikDTO result = null; ;
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "select * from zaposleni where Sifra=@id";
+                command.Parameters.AddWithValue("@id", id);
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    int sifra = reader.GetInt32(0);
+                    string ime = reader.GetString(1);
+                    string prezime = reader.GetString(2);
+                    string telefon = reader.GetString(3);
+                    DateTime datum = reader.GetDateTime(4);
+                    string tip = reader.GetString(5);
+                    
+                    result = new RadnikDTO(sifra, ime, prezime, telefon, datum, tip);
+                    
+                }
+            }
+            return result;
         }
 
         public ZaposleniDTO GetZaposleniById(int id)

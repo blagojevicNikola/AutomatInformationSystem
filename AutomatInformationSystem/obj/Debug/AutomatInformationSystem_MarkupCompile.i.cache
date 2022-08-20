@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\App.xaml
-151050283459
+16-85525275
 
-74552287739
+78-793116129
 152141524029
-Controls\AutomatItemCard.xaml;Controls\ProizvodItemCard.xaml;Controls\ZaposleniItemCard.xaml;MainWindow.xaml;Views\AddAutomatWindow.xaml;Views\AddProizvodWindow.xaml;Views\AddZaposleniWindow.xaml;Views\CloudView.xaml;Views\EmailView.xaml;Views\FillAutomatWindow.xaml;Views\HomeView.xaml;Views\ManageAutomatWindow.xaml;Views\UpdateAutomatWindow.xaml;Views\UpdateProizvodWindow.xaml;Views\UpdateZaposleniWindow.xaml;
+Controls\AutomatItemCard.xaml;Controls\ProizvodItemCard.xaml;Controls\ZaposleniItemCard.xaml;MainWindow.xaml;Views\AddAutomatWindow.xaml;Views\AddProizvodWindow.xaml;Views\AddZaposleniWindow.xaml;Views\ChooseWorkerWindow.xaml;Views\CloudView.xaml;Views\EmailView.xaml;Views\FillAutomatWindow.xaml;Views\HomeView.xaml;Views\ManageAutomatWindow.xaml;Views\UpdateAutomatWindow.xaml;Views\UpdateProizvodWindow.xaml;Views\UpdateZaposleniWindow.xaml;
 
-True
+False
 

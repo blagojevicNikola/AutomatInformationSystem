@@ -59,3 +59,5 @@ C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj
 C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\ManageAutomatWindow.baml
 C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\FillAutomatWindow.g.cs
 C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\FillAutomatWindow.baml
+C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\ChooseWorkerWindow.g.cs
+C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\ChooseWorkerWindow.baml

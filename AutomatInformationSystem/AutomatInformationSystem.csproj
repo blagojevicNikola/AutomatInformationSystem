@@ -77,8 +77,10 @@
     <Compile Include="ModelViews\AddingZaposleniViewModel.cs" />
     <Compile Include="ModelViews\AutomatiPageModelView.cs" />
     <Compile Include="ModelViews\AutomatItemCardViewModel.cs" />
+    <Compile Include="ModelViews\ChooseWorkerViewModel.cs" />
     <Compile Include="ModelViews\DostupanProizvodViewModel.cs" />
     <Compile Include="ModelViews\FillAutomatViewModel.cs" />
+    <Compile Include="ModelViews\FillWithProizvodViewModel.cs" />
     <Compile Include="ModelViews\IzabranProizvodViewModel.cs" />
     <Compile Include="ModelViews\ManageAutomatViewModel.cs" />
     <Compile Include="ModelViews\ObjektiItemViewModel.cs" />
@@ -87,6 +89,7 @@
     <Compile Include="ModelViews\ProizvodItemCardViewModel.cs" />
     <Compile Include="ModelViews\RelayCommand.cs" />
     <Compile Include="ModelViews\SastojciViewModel.cs" />
+    <Compile Include="ModelViews\SelectionWorkerViewModel.cs" />
     <Compile Include="ModelViews\UpdateAutomatViewModel.cs" />
     <Compile Include="ModelViews\UpdateProizvodViewModel.cs" />
     <Compile Include="ModelViews\UpdateZaposleniViewModel.cs" />
@@ -128,6 +131,9 @@
     </Compile>
     <Compile Include="Views\AddZaposleniWindow.xaml.cs">
       <DependentUpon>AddZaposleniWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChooseWorkerWindow.xaml.cs">
+      <DependentUpon>ChooseWorkerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CloudView.xaml.cs">
       <DependentUpon>CloudView.xaml</DependentUpon>
@@ -186,6 +192,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddZaposleniWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChooseWorkerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
