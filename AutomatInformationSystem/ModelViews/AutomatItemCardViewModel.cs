@@ -85,6 +85,7 @@ namespace AutomatInformationSystem
                 FillAutomatWindow win = new FillAutomatWindow();
                 FillAutomatViewModel vmm = new FillAutomatViewModel(ID, Tip, radnikId);
                 win.DataContext = vmm;
+                vmm.ClosingRequest += (senderr, b) => { win.Close(); };
                 win.Show();
             };
             win1.Show();

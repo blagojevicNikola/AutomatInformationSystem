@@ -61,6 +61,7 @@ namespace AutomatInformationSystem
             DostupniProizvodi = obsProizvodi;
             AddCommand = new RelayCommand(addProizvod);
             RemoveCommand = new RelayCommand(removeProizvod);
+            CloseCommand = new RelayCommand(closeWindow);
         }
 
         public void addProizvod()
