@@ -116,8 +116,28 @@
                 </StackPanel>
             </Grid>
 
-            <ListView Grid.Column="4">
-
+            <ListView Grid.Column="4" ItemsSource="{Binding PrihodiAutomata}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="5">
+                            <TextBlock Text="{Binding DatumPunjenja}"
+                                       FontSize="15"
+                                       FontStyle="Italic" 
+                                       FontWeight="Medium"
+                                       Margin="0,0,10,0"/>
+                            <TextBlock Text="{Binding Prihod}"
+                                       FontSize="15"
+                                       FontStyle="Italic" 
+                                       FontWeight="Medium"
+                                       Margin="0,0,15,0"/>
+                            <Button Height="20"
+                                    Width="20"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
 
         </Grid>

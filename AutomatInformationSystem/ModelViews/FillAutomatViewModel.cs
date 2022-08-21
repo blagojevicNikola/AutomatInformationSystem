@@ -24,6 +24,7 @@ namespace AutomatInformationSystem
         public string Prihod { get { return prihod; } set { prihod = value; NotifyPropertyChanged("Prihod"); } }
         public ObservableCollection<DostupanProizvodViewModel> DostupniProizvodi { get; set; }
         public ObservableCollection<FillWithProizvodViewModel> IzabraniProizvodi { get; set; }
+        public ObservableCollection<PrihodViewModel> PrihodiAutomata { get; set; }
         public DostupanProizvodViewModel ToBeAdded { get; set; }
         public FillWithProizvodViewModel ToBeRemoved { get; set; }
         public ICommand AddCommand { get; set; }
@@ -58,7 +59,13 @@ namespace AutomatInformationSystem
                 sastojciAutomata = sasDao.GetAllSastojciForAutomat(id);
                 sastojciAutomata.ForEach(s => obsProizvodi.Add(new DostupanProizvodViewModel(s.ID, s.Naziv)));
             }
+            IPrihodDAO prihDao = new PrihodImplDAO();
+            List<PrihodDTO> listaPrihoda = prihDao.GetAllPrihodByAutomatId(currentAutomat.ID);
+            ObservableCollection<PrihodViewModel> obsPrihod = new ObservableCollection<PrihodViewModel>();
+            listaPrihoda.ForEach(s => obsPrihod.Add(new PrihodViewModel(currentAutomat.ID, currentRadnik.Sifra, s.DatumPunjenja.ToString("dd/MM/yyyy"), s.Cijena.ToString())));
             DostupniProizvodi = obsProizvodi;
+            PrihodiAutomata = obsPrihod;
+
             AddCommand = new RelayCommand(addProizvod);
             RemoveCommand = new RelayCommand(removeProizvod);
             CloseCommand = new RelayCommand(closeWindow);
@@ -93,13 +100,14 @@ namespace AutomatInformationSystem
 
         public void confirmFill()
         {
-            if(currentAutomat.Tip=="Hrana")
+            if(double.TryParse(Prihod, out _))
             {
-
-            }
-            else
-            {
-
+                double prihodAutomata = double.Parse(Prihod);
+                if (prihodAutomata < 0)
+                    return;
+                IPrihodDAO prihDao = new PrihodImplDAO();
+                PrihodDTO newPrihod = new PrihodDTO(currentAutomat.ID, currentRadnik.Sifra, DateTime.Now, prihodAutomata);
+                prihDao.addPrihod(newPrihod);
             }
         }
 
