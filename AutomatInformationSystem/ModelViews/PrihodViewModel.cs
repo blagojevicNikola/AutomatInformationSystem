@@ -11,6 +11,8 @@ namespace AutomatInformationSystem
     public class PrihodViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public int PunjenjeID { get; set; }
         public int AutomatID { get; set; }
         public int RadnikID { get; set; }
         public string DatumPunjenja { get; set; }
@@ -19,6 +21,14 @@ namespace AutomatInformationSystem
 
         public PrihodViewModel(int automatId, int radnikId, string datumPunjenja, string prihod)
         {
+            AutomatID = automatId;
+            RadnikID = radnikId;
+            DatumPunjenja = datumPunjenja;
+            Prihod = prihod;
+        }
+        public PrihodViewModel(int punjenjeId, int automatId, int radnikId, string datumPunjenja, string prihod)
+        {
+            PunjenjeID = punjenjeId;
             AutomatID = automatId;
             RadnikID = radnikId;
             DatumPunjenja = datumPunjenja;

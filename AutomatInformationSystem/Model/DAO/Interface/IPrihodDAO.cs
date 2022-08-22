@@ -8,7 +8,11 @@ namespace AutomatInformationSystem
 {
     interface IPrihodDAO
     {
-        List<PrihodDTO> GetAllPrihodByAutomatId(int id);
-        void addPrihod(PrihodDTO prihod);
+        List<PunjenjeDTO> GetAllPrihodByAutomatId(int id);
+        long addPrihod(PunjenjeDTO prihod);
+
+        PunjenjeDTO GetPunjenjeById(long id);
+        void addHranaToPunjenje(long idPunjenje, long idHrana, int kolicina);
+        void addSastojciToPunjenje(long idPunjenje, long idHrana, double kolicina);
     }
 }

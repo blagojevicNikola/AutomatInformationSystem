@@ -40,7 +40,7 @@ namespace AutomatInformationSystem
             IAutomatDAO autoDao = new AutomatiImplDAO();
             IZaposleniDAO zapDao = new ZaposleniImplDAO();
             RadnikDTO tempRadnik = zapDao.GetRadnikById(radnikId);
-            radnikId = tempRadnik.Sifra;
+            currentRadnik = tempRadnik;
             currentAutomat = autoDao.GetAutomatById(id, tip);
             Sifra = currentAutomat.SerijskiBroj.ToString();
             ObservableCollection<DostupanProizvodViewModel> obsProizvodi = new ObservableCollection<DostupanProizvodViewModel>();
@@ -60,14 +60,15 @@ namespace AutomatInformationSystem
                 sastojciAutomata.ForEach(s => obsProizvodi.Add(new DostupanProizvodViewModel(s.ID, s.Naziv)));
             }
             IPrihodDAO prihDao = new PrihodImplDAO();
-            List<PrihodDTO> listaPrihoda = prihDao.GetAllPrihodByAutomatId(currentAutomat.ID);
+            List<PunjenjeDTO> listaPrihoda = prihDao.GetAllPrihodByAutomatId(currentAutomat.ID);
             ObservableCollection<PrihodViewModel> obsPrihod = new ObservableCollection<PrihodViewModel>();
-            listaPrihoda.ForEach(s => obsPrihod.Add(new PrihodViewModel(currentAutomat.ID, currentRadnik.Sifra, s.DatumPunjenja.ToString("dd/MM/yyyy"), s.Cijena.ToString())));
+            listaPrihoda.ForEach(s => obsPrihod.Add(new PrihodViewModel(s.PunjenjeID, currentAutomat.ID, currentRadnik.Sifra, s.DatumPunjenja.ToString("dd/MM/yyyy"), s.Prihod.ToString())));
             DostupniProizvodi = obsProizvodi;
             PrihodiAutomata = obsPrihod;
 
             AddCommand = new RelayCommand(addProizvod);
             RemoveCommand = new RelayCommand(removeProizvod);
+            ConfirmCommand = new RelayCommand(confirmFill);
             CloseCommand = new RelayCommand(closeWindow);
         }
 
@@ -106,8 +107,25 @@ namespace AutomatInformationSystem
                 if (prihodAutomata < 0)
                     return;
                 IPrihodDAO prihDao = new PrihodImplDAO();
-                PrihodDTO newPrihod = new PrihodDTO(currentAutomat.ID, currentRadnik.Sifra, DateTime.Now, prihodAutomata);
-                prihDao.addPrihod(newPrihod);
+                PunjenjeDTO newPrihod = new PunjenjeDTO(currentAutomat.ID, currentRadnik.Sifra, DateTime.Now, prihodAutomata);
+                long idPunjenja = prihDao.addPrihod(newPrihod);
+                PunjenjeDTO recievedPunjenje = prihDao.GetPunjenjeById(idPunjenja);
+                PrihodiAutomata.Add(new PrihodViewModel(recievedPunjenje.AutomatID, recievedPunjenje.RadnikID, recievedPunjenje.DatumPunjenja.ToString("dd/MM/yyyy"), recievedPunjenje.Prihod.ToString()));
+                if(currentAutomat.Tip=="Hrana")
+                {
+                    foreach (FillWithProizvodViewModel f in IzabraniProizvodi)
+                    {
+                        prihDao.addHranaToPunjenje(idPunjenja, f.ID, int.Parse(f.Kolicina));
+                    }
+                }
+                else
+                {
+                    foreach (FillWithProizvodViewModel f in IzabraniProizvodi)
+                    {
+                        prihDao.addSastojciToPunjenje(idPunjenja, f.ID, double.Parse(f.Kolicina));
+                    }
+                }
+                
             }
         }
 
