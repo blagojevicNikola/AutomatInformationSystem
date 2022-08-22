@@ -263,7 +263,7 @@ namespace AutomatInformationSystem
                 else
                 {
                     command.Parameters.Clear();
-                    command.CommandText = "update automat_hrane set KapacitetKontejnera=@kapacitet where AUTOMAT_idAutomat=@id";
+                    command.CommandText = "update automat_kafe set KapacitetKontejnera=@kapacitet where AUTOMAT_idAutomat=@id";
                     command.Parameters.AddWithValue("@id", automat.ID);
                     AutomatKafeDTO temp = (AutomatKafeDTO)automat;
                     command.Parameters.AddWithValue("@kapacitet", temp.Kapacitet);
