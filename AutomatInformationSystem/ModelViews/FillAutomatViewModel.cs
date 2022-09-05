@@ -62,7 +62,7 @@ namespace AutomatInformationSystem
             IPrihodDAO prihDao = new PrihodImplDAO();
             List<PunjenjeDTO> listaPrihoda = prihDao.GetAllPrihodByAutomatId(currentAutomat.ID);
             ObservableCollection<PrihodViewModel> obsPrihod = new ObservableCollection<PrihodViewModel>();
-            listaPrihoda.ForEach(s => obsPrihod.Add(new PrihodViewModel(s.PunjenjeID, currentAutomat.ID, currentRadnik.Sifra, s.DatumPunjenja.ToString("dd/MM/yyyy"), s.Prihod.ToString())));
+            listaPrihoda.ForEach(s => obsPrihod.Add(new PrihodViewModel(s.PunjenjeID, currentAutomat.ID, currentRadnik.Sifra, s.DatumPunjenja.ToString("dd/MM/yyyy"), s.Prihod.ToString(), currentAutomat.Tip)));
             DostupniProizvodi = obsProizvodi;
             PrihodiAutomata = obsPrihod;
 
@@ -110,7 +110,8 @@ namespace AutomatInformationSystem
                 PunjenjeDTO newPrihod = new PunjenjeDTO(currentAutomat.ID, currentRadnik.Sifra, DateTime.Now, prihodAutomata);
                 long idPunjenja = prihDao.addPrihod(newPrihod);
                 PunjenjeDTO recievedPunjenje = prihDao.GetPunjenjeById(idPunjenja);
-                PrihodiAutomata.Add(new PrihodViewModel(recievedPunjenje.AutomatID, recievedPunjenje.RadnikID, recievedPunjenje.DatumPunjenja.ToString("dd/MM/yyyy"), recievedPunjenje.Prihod.ToString()));
+                Console.WriteLine(recievedPunjenje.PunjenjeID);
+                PrihodiAutomata.Add(new PrihodViewModel(recievedPunjenje.PunjenjeID, recievedPunjenje.AutomatID, recievedPunjenje.RadnikID, recievedPunjenje.DatumPunjenja.ToString("dd/MM/yyyy"), recievedPunjenje.Prihod.ToString(),currentAutomat.Tip));
                 if(currentAutomat.Tip=="Hrana")
                 {
                     foreach (FillWithProizvodViewModel f in IzabraniProizvodi)

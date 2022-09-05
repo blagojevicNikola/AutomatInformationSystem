@@ -6,20 +6,12 @@ using System.Threading.Tasks;
 
 namespace AutomatInformationSystem
 {
-    public class FillWithProizvodViewModel
+    public class ProizvodPunjenjaDTO
     {
-        public int ID { get; set; }
         public string Naziv { get; set; }
         public string Kolicina { get; set; }
 
-        public FillWithProizvodViewModel(int id, string naziv, string kolicina)
-        {
-            ID = id;
-            Naziv = naziv;
-            Kolicina = kolicina;
-        }
-
-        public FillWithProizvodViewModel(string naziv, string kolicina)
+        public ProizvodPunjenjaDTO(string naziv, string kolicina)
         {
             Naziv = naziv;
             Kolicina = kolicina;

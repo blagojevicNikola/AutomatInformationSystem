@@ -80,6 +80,7 @@
     <Compile Include="ModelViews\ChooseWorkerViewModel.cs" />
     <Compile Include="ModelViews\DostupanProizvodViewModel.cs" />
     <Compile Include="ModelViews\FillAutomatViewModel.cs" />
+    <Compile Include="ModelViews\FillReviewModelView.cs" />
     <Compile Include="ModelViews\FillWithProizvodViewModel.cs" />
     <Compile Include="ModelViews\IzabranProizvodViewModel.cs" />
     <Compile Include="ModelViews\ManageAutomatViewModel.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Model\DTO\LokacijaDTO.cs" />
     <Compile Include="Model\DTO\NudiProizvodDTO.cs" />
     <Compile Include="Model\DTO\ObjekatDTO.cs" />
+    <Compile Include="Model\DTO\ProizvodPunjenjaDTO.cs" />
     <Compile Include="Model\DTO\PunjenjeDTO.cs" />
     <Compile Include="Model\DTO\ProizvodDTO.cs" />
     <Compile Include="Model\DTO\RadnikDTO.cs" />
@@ -147,6 +149,9 @@
     </Compile>
     <Compile Include="Views\FillAutomatWindow.xaml.cs">
       <DependentUpon>FillAutomatWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FillReviewWindow.xaml.cs">
+      <DependentUpon>FillReviewWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
@@ -212,6 +217,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FillAutomatWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FillReviewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutomatInformationSystem.Views"
         mc:Ignorable="d"
-        Title="FillAutomatWindow" Height="450" Width="1000">
+        Title="FillAutomatWindow" Height="450" Width="950">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         
@@ -27,7 +27,7 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
             <ListView Grid.Column="0"
@@ -116,30 +116,42 @@
                 </StackPanel>
             </Grid>
 
-            <ListView Grid.Column="4" ItemsSource="{Binding PrihodiAutomata}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="5">
-                            <TextBlock Text="{Binding DatumPunjenja}"
+            <ScrollViewer Grid.Column="4">
+                <ListView  ItemsSource="{Binding PrihodiAutomata}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0"
+                                       Text="{Binding DatumPunjenja}"
                                        FontSize="15"
                                        FontStyle="Italic" 
                                        FontWeight="Medium"
                                        Margin="0,0,10,0"/>
-                            <TextBlock Text="{Binding Prihod}"
+                                <TextBlock Grid.Column="1"
+                                       Text="{Binding Prihod}"
                                        FontSize="15"
                                        FontStyle="Italic" 
                                        FontWeight="Medium"
                                        Margin="0,0,15,0"/>
-                            <Button Height="20"
+                                <Button Grid.Column="2"
+                                    Height="20"
                                     Width="20"
+                                    Command="{Binding InfoCommand}"
+                                    HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
-                                    Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                    />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
+            </ScrollViewer>
+            
         </Grid>
 
         <Grid Grid.Row="2" >
@@ -165,7 +177,7 @@
                     FontSize="22"
                     Width="100"
                     Padding="0"
-                    Margin="10,10,10,0"
+                    Margin="10,10,10,10"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Grid.Row="1"
