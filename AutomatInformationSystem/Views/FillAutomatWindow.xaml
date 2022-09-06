@@ -9,6 +9,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
@@ -21,7 +22,21 @@
                Margin="5"
                Grid.Row="0"/>
 
-        <Grid Margin="5" Grid.Row="1">
+        <TextBlock  Margin="5"
+                    Grid.Row="1"
+                    HorizontalAlignment="Right">
+                <Run Text="Ukupan prihod: "
+                     FontWeight="SemiBold"
+                     FontSize="14"/>
+                <Run Text="{Binding UkupanPrihod}"
+                     FontWeight="SemiBold"
+                     FontSize="14"/>
+                <Run Text="KM"
+                     FontWeight="SemiBold"
+                     FontSize="14"/>
+        </TextBlock>
+
+        <Grid Margin="5" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
@@ -65,8 +80,8 @@
                         Grid.Row="1"
                         Command="{Binding RemoveCommand}"/>
                 </StackPanel>
-                
-                
+
+
             </Grid>
 
             <ListView Grid.Column="2"
@@ -154,7 +169,7 @@
             
         </Grid>
 
-        <Grid Grid.Row="2" >
+        <Grid Grid.Row="3" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>

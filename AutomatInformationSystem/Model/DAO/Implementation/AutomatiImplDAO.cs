@@ -58,15 +58,16 @@ namespace AutomatInformationSystem
                         string tip = reader.GetString(3);
                         double potrosnja = (double)reader.GetDecimal(4);
                         long serijskiBroj = reader.GetInt64(5);
+                        double ukupanPrihod = (double)reader.GetDecimal(7);
                         if(s=="automat_hrane_info")
                         {
                             int kapacitet = reader.GetInt32(6);
-                            resultList.Add(new AutomatHraneDTO(id, datumPostavljanja, objekatId, tip, potrosnja, serijskiBroj, kapacitet));
+                            resultList.Add(new AutomatHraneDTO(id, datumPostavljanja, objekatId, tip, potrosnja, serijskiBroj, kapacitet, ukupanPrihod));
                         }
                         else
                         {
                             double kapacitet = (double)reader.GetDecimal(6);
-                            resultList.Add(new AutomatKafeDTO(id, datumPostavljanja, objekatId, tip, potrosnja, serijskiBroj, kapacitet));
+                            resultList.Add(new AutomatKafeDTO(id, datumPostavljanja, objekatId, tip, potrosnja, serijskiBroj, kapacitet, ukupanPrihod));
                         }
                     }
                 }
@@ -163,7 +164,8 @@ namespace AutomatInformationSystem
                         double potrosnja = (double)reader.GetDecimal(4);
                         long serijskiBroj = reader.GetInt64(5);
                         int kapacitet = reader.GetInt32(6);
-                        result = new AutomatHraneDTO(idAutomata, datumPost, objectId, tipAutomata, potrosnja, serijskiBroj, kapacitet);
+                        double ukupanPrihod = (double)reader.GetDecimal(7);
+                        result = new AutomatHraneDTO(idAutomata, datumPost, objectId, tipAutomata, potrosnja, serijskiBroj, kapacitet, ukupanPrihod);
                     }
                 }
                 else
@@ -188,7 +190,8 @@ namespace AutomatInformationSystem
                         double potrosnja = (double)reader.GetDecimal(4);
                         long serijskiBroj = reader.GetInt64(5);
                         double kapacitet = (double)reader.GetDecimal(6);
-                        result = new AutomatKafeDTO(idAutomata, datumPost, objectId, tipAutomata, potrosnja, serijskiBroj, kapacitet);
+                        double ukupanPrihod = (double)reader.GetDecimal(7);
+                        result = new AutomatKafeDTO(idAutomata, datumPost, objectId, tipAutomata, potrosnja, serijskiBroj, kapacitet, ukupanPrihod);
                     }
                 }
                 return result;

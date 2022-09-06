@@ -22,6 +22,7 @@ namespace AutomatInformationSystem
         public string Sifra { get; set; }
         public string Kolicina { get { return kolicina; } set { kolicina = value; NotifyPropertyChanged("Kolicina"); } }
         public string Prihod { get { return prihod; } set { prihod = value; NotifyPropertyChanged("Prihod"); } }
+        public string UkupanPrihod { get; set; }
         public ObservableCollection<DostupanProizvodViewModel> DostupniProizvodi { get; set; }
         public ObservableCollection<FillWithProizvodViewModel> IzabraniProizvodi { get; set; }
         public ObservableCollection<PrihodViewModel> PrihodiAutomata { get; set; }
@@ -42,6 +43,7 @@ namespace AutomatInformationSystem
             RadnikDTO tempRadnik = zapDao.GetRadnikById(radnikId);
             currentRadnik = tempRadnik;
             currentAutomat = autoDao.GetAutomatById(id, tip);
+            UkupanPrihod = currentAutomat.UkupanPrihod.ToString();
             Sifra = currentAutomat.SerijskiBroj.ToString();
             ObservableCollection<DostupanProizvodViewModel> obsProizvodi = new ObservableCollection<DostupanProizvodViewModel>();
             if (tip=="Hrana")

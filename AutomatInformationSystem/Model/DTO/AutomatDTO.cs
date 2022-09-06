@@ -18,12 +18,14 @@ namespace AutomatInformationSystem
 
         public long SerijskiBroj { get; set; }
 
+        public double UkupanPrihod { get; set; }
+
         public AutomatDTO()
         {
 
         }
 
-        public AutomatDTO(int id, DateTime datumPostavljanja, int? objekatId, string tip, double potrosnja, long serijskiBroj)
+        public AutomatDTO(int id, DateTime datumPostavljanja, int? objekatId, string tip, double potrosnja, long serijskiBroj, double ukupanPrihod)
         {
             ID = id;
             DatumPostavljanja = datumPostavljanja;
@@ -31,6 +33,7 @@ namespace AutomatInformationSystem
             Tip = tip;
             Potrosnja = potrosnja;
             SerijskiBroj = serijskiBroj;
+            UkupanPrihod = ukupanPrihod;
         }
 
         public AutomatDTO(DateTime datumPostavljanja, int? objekatId, string tip, double potrosnja, long serijskiBroj)

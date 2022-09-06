@@ -89,11 +89,11 @@ namespace AutomatInformationSystem
             }
             if (Tip == "Hrana")
             {
-                newAutomat = new AutomatHraneDTO(automat.ID, DateTime.ParseExact(DatumPostavljanja, "dd/MM/yyyy", CultureInfo.InvariantCulture),selectedObjId, Tip, double.Parse(Potrosnja), long.Parse(SerijskiBroj), int.Parse(Kapacitet));
+                newAutomat = new AutomatHraneDTO(automat.ID, DateTime.ParseExact(DatumPostavljanja, "dd/MM/yyyy", CultureInfo.InvariantCulture),selectedObjId, Tip, double.Parse(Potrosnja), long.Parse(SerijskiBroj), int.Parse(Kapacitet),0);
             }
             else
             {
-                newAutomat = new AutomatKafeDTO(automat.ID, DateTime.ParseExact(DatumPostavljanja, "dd/MM/yyyy", CultureInfo.InvariantCulture), selectedObjId, Tip, double.Parse(Potrosnja), long.Parse(SerijskiBroj), double.Parse(Kapacitet));
+                newAutomat = new AutomatKafeDTO(automat.ID, DateTime.ParseExact(DatumPostavljanja, "dd/MM/yyyy", CultureInfo.InvariantCulture), selectedObjId, Tip, double.Parse(Potrosnja), long.Parse(SerijskiBroj), double.Parse(Kapacitet), 0);
             }
             dao.updateAutomat(newAutomat);
             ClosingRequest(this, EventArgs.Empty);
