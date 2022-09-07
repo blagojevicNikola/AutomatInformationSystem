@@ -25,18 +25,23 @@ namespace AutomatInformationSystem
                     command.CommandText = "delete from serviser where ZAPOSLENI_Sifra=@sifra";
                     command.Parameters.AddWithValue("@sifra", id);
                     command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                    command.CommandText = "delete from zaposleni where Sifra=@sifra";
+                    command.Parameters.AddWithValue("@sifra", id);
+                    command.ExecuteNonQuery();
                 }
                 else
                 {
                     command.Parameters.Clear();
-                    command.CommandText = "delete from radnik where ZAPOSLENI_Sifra=@sifra";
-                    command.Parameters.AddWithValue("@sifra", id);
+                    command.CommandText = "try_delete_radnik_procedure";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@pIdRadnik", id);
+                    command.Parameters["@pIdRadnik"].Direction = ParameterDirection.Input;
+                    //command.CommandText = "delete from radnik where ZAPOSLENI_Sifra=@sifra";
+                    //command.Parameters.AddWithValue("@sifra", id);
                     command.ExecuteNonQuery();
                 }
-                command.Parameters.Clear();
-                command.CommandText = "delete from zaposleni where Sifra=@sifra";
-                command.Parameters.AddWithValue("@sifra", id);
-                command.ExecuteNonQuery();
+                
             }
         }
 

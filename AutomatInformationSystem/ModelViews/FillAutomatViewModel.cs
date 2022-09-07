@@ -94,7 +94,13 @@ namespace AutomatInformationSystem
             {
                 if (ToBeAdded != null && !IzabraniProizvodi.Any(s => s.ID == ToBeAdded.ID) && double.TryParse(Kolicina, out _))
                 {
-                    IzabraniProizvodi.Add(new FillWithProizvodViewModel(ToBeAdded.ID, ToBeAdded.Naziv, Kolicina));
+                    IPrihodDAO prihodDao = new PrihodImplDAO();
+                    string poruka;
+                    if(prihodDao.SastojakCanBeAdded(currentAutomat.ID, ToBeAdded.ID, double.Parse(Kolicina), out poruka))
+                    {
+                        IzabraniProizvodi.Add(new FillWithProizvodViewModel(ToBeAdded.ID, ToBeAdded.Naziv, Kolicina));
+                    }
+                    MessageBox.Show(poruka);
                 }
             }
             

@@ -181,7 +181,38 @@ namespace AutomatInformationSystem
         }
         public bool SastojakCanBeAdded(long idAutomat, long idSastojak, double kolicina, out string poruka)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
+            {
+
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "can_add_sastojak_procedure";
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@pIdAutomat", idAutomat);
+                command.Parameters["@pIdAutomat"].Direction = System.Data.ParameterDirection.Input;
+
+                command.Parameters.AddWithValue("@pKolicina", kolicina);
+                command.Parameters["@pKolicina"].Direction = System.Data.ParameterDirection.Input;
+                string por = "";
+                command.Parameters.AddWithValue("@pPoruka", por);
+                command.Parameters["@pPoruka"].Direction = System.Data.ParameterDirection.Output;
+                bool status = false;
+                command.Parameters.AddWithValue("@pStatus", MySqlDbType.Int32);
+                command.Parameters["@pStatus"].Direction = System.Data.ParameterDirection.Output;
+
+                //command.CommandText = "insert into ah_nudi_h VALUES(@idAutomat, @idProizvod, @Cijena,@Kolicina)";
+                ////command.Parameters.AddWithValue("@Sifra", 1);
+                //command.Parameters.AddWithValue("@idAutomat", automatId);
+                //command.Parameters.AddWithValue("@idProizvod", proizvodId);
+                //command.Parameters.AddWithValue("@Cijena", cijena);
+                //command.Parameters.AddWithValue("@Kolicina", kolicina);
+                command.ExecuteNonQuery();
+                status = (int)command.Parameters["@pStatus"].Value == 0 ? false : true;
+                poruka = command.Parameters["@pPoruka"].Value.ToString();
+                return status;
+
+            }
         }
     }
 }

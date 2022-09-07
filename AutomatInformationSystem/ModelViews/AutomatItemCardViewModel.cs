@@ -1,9 +1,11 @@
 ﻿using AutomatInformationSystem.Views;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AutomatInformationSystem
@@ -51,7 +53,14 @@ namespace AutomatInformationSystem
         private void deleteAutomat()
         {
             IAutomatDAO dao = new AutomatiImplDAO();
-            dao.deleteAutomat(ID, Tip);
+            try
+            {
+                dao.deleteAutomat(ID, Tip);
+            }catch(MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            
         }
 
         private void updateAutomat()

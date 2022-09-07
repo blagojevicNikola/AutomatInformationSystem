@@ -10,7 +10,7 @@ namespace AutomatInformationSystem
 {
     public class AutomatiImplDAO : IAutomatDAO
     {
-        public void deleteAutomat(int id, string tip)
+        public void deleteAutomat(int id, string tip) 
         {
             using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["AutomatDB"].ConnectionString))
             {
@@ -20,21 +20,29 @@ namespace AutomatInformationSystem
                 if (tip=="Hrana")
                 {
                     command.Parameters.Clear();
-                    command.CommandText = "delete from automat_hrane where AUTOMAT_idAutomat=@idAutomat";
-                    command.Parameters.AddWithValue("@idAutomat", id);
+                    command.CommandText = "try_delete_automat_hrane_procedure";
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@pIdAutomat", id);
+                    command.Parameters["@pIdAutomat"].Direction = System.Data.ParameterDirection.Input;
+                    //command.CommandText = "delete from automat_hrane where AUTOMAT_idAutomat=@idAutomat";
+                    //command.Parameters.AddWithValue("@idAutomat", id);
                     command.ExecuteNonQuery();
                 }
                 else
                 {
                     command.Parameters.Clear();
-                    command.CommandText = "delete from automat_kafe where AUTOMAT_idAutomat=@idAutomat";
-                    command.Parameters.AddWithValue("@idAutomat", id);
+                    command.CommandText = "try_delete_automat_kafe_procedure";
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@pIdAutomat", id);
+                    command.Parameters["@pIdAutomat"].Direction = System.Data.ParameterDirection.Input;
+                    //command.CommandText = "delete from automat_kafe where AUTOMAT_idAutomat=@idAutomat";
+                    //command.Parameters.AddWithValue("@idAutomat", id);
                     command.ExecuteNonQuery();
                 }
-                command.Parameters.Clear();
-                command.CommandText = "delete from automat where idAutomat=@idAutomat";
-                command.Parameters.AddWithValue("@idAutomat", id);
-                command.ExecuteNonQuery();
+                //command.Parameters.Clear();
+                //command.CommandText = "delete from automat where idAutomat=@idAutomat";
+                //command.Parameters.AddWithValue("@idAutomat", id);
+                //command.ExecuteNonQuery();
             }
         }
 
@@ -206,7 +214,7 @@ namespace AutomatInformationSystem
 
                 connection.Open();
                 MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "insert into automat VALUES(@ID, @DatumPostavljanja, @ObjekatId, @Tip, @Potrosnja, @SerijskiBroj)";
+                command.CommandText = "insert into automat(idAutomat,DatumPostavljanja,OBJEKAT_idObjekat,Tip,Potrosnja,SerijskiBroj) VALUES(@ID, @DatumPostavljanja, @ObjekatId, @Tip, @Potrosnja, @SerijskiBroj)";
                 command.Parameters.AddWithValue("@ID", null);
                 command.Parameters.AddWithValue("@DatumPostavljanja", automat.DatumPostavljanja);
                 command.Parameters.AddWithValue("@ObjekatId", automat.ObjekatID);
