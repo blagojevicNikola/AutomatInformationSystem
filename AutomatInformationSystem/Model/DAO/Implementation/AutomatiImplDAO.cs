@@ -104,19 +104,19 @@ namespace AutomatInformationSystem
                         double potrosnja = (double)reader.GetDecimal(4);
                         long serijskiBroj = reader.GetInt64(5);
                         string nazivObjekta = "";
-                        if(!reader.IsDBNull(7))
-                        {
-                            nazivObjekta = reader.GetString(7);
-                        }
-                        string grad = "";
                         if(!reader.IsDBNull(8))
                         {
-                            grad = reader.GetString(8);
+                            nazivObjekta = reader.GetString(8);
                         }
-                        string adresa = "";
+                        string grad = "";
                         if(!reader.IsDBNull(9))
                         {
-                            adresa = reader.GetString(9);
+                            grad = reader.GetString(9);
+                        }
+                        string adresa = "";
+                        if(!reader.IsDBNull(10))
+                        {
+                            adresa = reader.GetString(10);
                         }
                         if (s == "automat_hrane_info")
                         {

@@ -17,5 +17,8 @@ namespace AutomatInformationSystem
 
         List<ProizvodPunjenjaDTO> GetAllHranaByPunjenje(long punjenjeId);
         List<ProizvodPunjenjaDTO> GetAllSastojciByPunjenje(long punjenjeId);
+
+        bool HranaCanBeAdded(long idAutomat, long idProizvod, int kolicina, out string poruka);
+        bool SastojakCanBeAdded(long idAutomat, long idSastojak, double kolicina, out string poruka);
     }
 }

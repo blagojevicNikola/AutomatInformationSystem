@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AutomatInformationSystem
@@ -80,7 +81,13 @@ namespace AutomatInformationSystem
             {
                 if (ToBeAdded != null && !IzabraniProizvodi.Any(s => s.ID == ToBeAdded.ID) && int.TryParse(Kolicina, out _))
                 {
-                    IzabraniProizvodi.Add(new FillWithProizvodViewModel(ToBeAdded.ID, ToBeAdded.Naziv, Kolicina));
+                    IPrihodDAO prihodDao = new PrihodImplDAO();
+                    string poruka;
+                    if(prihodDao.HranaCanBeAdded(currentAutomat.ID,ToBeAdded.ID,int.Parse(Kolicina), out poruka))
+                    {
+                        IzabraniProizvodi.Add(new FillWithProizvodViewModel(ToBeAdded.ID, ToBeAdded.Naziv, Kolicina));
+                    }
+                    MessageBox.Show(poruka);
                 }
             }
             else
