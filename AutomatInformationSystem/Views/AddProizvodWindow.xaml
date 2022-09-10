@@ -8,13 +8,11 @@
         Title="AddProizvodWindow" Height="350" Width="600">
 
     <Window.Resources>
-        <Style x:Key="OkButton" TargetType="{x:Type Button}">
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="GreenYellow"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
 
     <Grid>
@@ -92,16 +90,11 @@
             </ItemsControl>
 
             <Button Grid.Row="2"
-                Height="40"
-                Width="100"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 Margin="10"
-                FontWeight="Bold"
-                FontSize="20"
-                Padding="0"
                 Command="{Binding Path=OkCommand}"
-                Style="{StaticResource OkButton}">
+                Style="{StaticResource OkButtonSytle}">
                 OK
             </Button>
         </Grid>
