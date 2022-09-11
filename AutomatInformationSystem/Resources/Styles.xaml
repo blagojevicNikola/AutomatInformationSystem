@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="OkButtonSytle" TargetType="{x:Type Button}">
-        <Setter Property="Background" Value="LawnGreen"/>
+        <Setter Property="Background" Value="#54dc11"/>
         <Setter Property="MinHeight" Value="40"/>
         <Setter Property="MinWidth" Value="100"/>
         <Setter Property="Visibility" Value="Visible"/>
@@ -27,7 +27,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#04db00"/>
+                <Setter Property="Background" Value="LawnGreen"/>
             </Trigger>
         </Style.Triggers>
         
@@ -67,5 +67,268 @@
 
     </Style>
 
+    <Style x:Key="CloseButtonSytle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#e0e0e0"/>
+        <Setter Property="MinHeight" Value="40"/>
+        <Setter Property="MinWidth" Value="100"/>
+        <Setter Property="Visibility" Value="Visible"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="#363636"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border CornerRadius="14"
+                                Background="{TemplateBinding Background}"
+                                AllowDrop="True"/>
+                        <ContentPresenter Grid.Row="0"
+                                          Grid.Column="0"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#c9c9c9"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style x:Key="DeleteButtonSytle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#e0e0e0"/>
+        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="MinWidth" Value="30"/>
+        <Setter Property="Visibility" Value="Visible"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="Foreground" Value="#363636"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border CornerRadius="14"
+                                Background="{TemplateBinding Background}"
+                                AllowDrop="True"/>
+                        <ContentPresenter Grid.Row="0"
+                                          Grid.Column="0"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#fa6e6e"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style x:Key="EditButtonSytle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#e0e0e0"/>
+        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="MinWidth" Value="30"/>
+        <Setter Property="Visibility" Value="Visible"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="Foreground" Value="#363636"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border CornerRadius="14"
+                                Background="{TemplateBinding Background}"
+                                AllowDrop="True"/>
+                        <ContentPresenter Grid.Row="0"
+                                          Grid.Column="0"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#fcf36d"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style x:Key="InfoButtonSytle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#e0e0e0"/>
+        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="MinWidth" Value="30"/>
+        <Setter Property="Visibility" Value="Visible"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="Foreground" Value="#363636"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border CornerRadius="14"
+                                Background="{TemplateBinding Background}"
+                                AllowDrop="True"/>
+                        <ContentPresenter Grid.Row="0"
+                                          Grid.Column="0"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#6dbcfc"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style x:Key="FillButtonSytle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#e0e0e0"/>
+        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="MinWidth" Value="30"/>
+        <Setter Property="Visibility" Value="Visible"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="Foreground" Value="#363636"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border CornerRadius="14"
+                                Background="{TemplateBinding Background}"
+                                AllowDrop="True"/>
+                        <ContentPresenter Grid.Row="0"
+                                          Grid.Column="0"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#6dfc71"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+
+    <Style x:Key="ImportProizvodButtonSytle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#e0e0e0"/>
+        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="MinWidth" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Visibility" Value="Visible"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="Foreground" Value="#363636"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border CornerRadius="14"
+                                Background="{TemplateBinding Background}"
+                                AllowDrop="True"/>
+                        <ContentPresenter Grid.Row="0"
+                                          Grid.Column="0"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#6dfc71"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style x:Key="RemoveProizvodButtonSytle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#e0e0e0"/>
+        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="MinWidth" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Visibility" Value="Visible"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="Foreground" Value="#363636"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border CornerRadius="14"
+                                Background="{TemplateBinding Background}"
+                                AllowDrop="True"/>
+                        <ContentPresenter Grid.Row="0"
+                                          Grid.Column="0"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#fa6e6e"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style x:Key="ConfirmButtonSytle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#e0e0e0"/>
+        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="MinWidth" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Visibility" Value="Visible"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="Foreground" Value="#363636"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border CornerRadius="14"
+                                Background="{TemplateBinding Background}"
+                                AllowDrop="True"/>
+                        <ContentPresenter Grid.Row="0"
+                                          Grid.Column="0"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#6dbcfc"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
 
 </ResourceDictionary>

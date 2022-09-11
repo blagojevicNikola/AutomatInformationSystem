@@ -9,7 +9,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="white">
-    <Grid d:DataContext="{x:Static gl:ZaposleniListDesignView.Instance}">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Resources/Styles.xaml"/>
+    </UserControl.Resources>
+    
+    <Grid>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -32,23 +37,13 @@
                VerticalAlignment="Center"
                Grid.Column="0"/>
 
-                <Button Content="Add"
-                    Padding="5,0,5,0"
-                    FontFamily="Ubuntu"
-                    FontSize="20"
-                    FontWeight="SemiBold"
-                    Margin="0,0,20,0"
-                    Width="100"
-                    Height="40"
+                <Button Content="Add"                  
+                    Margin="0,0,20,0"                  
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
-                    Grid.Column="1"
-                    Background="#53ad4b"
-                    Foreground="white"
-                    BorderThickness="0"
-                    BorderBrush="Transparent"
-                    Command="{Binding Path=AddZaposleniCommand}">
-
+                    Grid.Column="1"                 
+                    Command="{Binding Path=AddZaposleniCommand}"
+                    Style="{StaticResource AddButtonSytle}">
                 </Button>
             </Grid>
 

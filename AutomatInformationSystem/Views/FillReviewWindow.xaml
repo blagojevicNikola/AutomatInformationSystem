@@ -6,6 +6,16 @@
         xmlns:local="clr-namespace:AutomatInformationSystem.Views"
         mc:Ignorable="d"
         Title="FillReviewWindow" Height="550" Width="320">
+
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -45,12 +55,9 @@
 
         <Button Grid.Row="3"
                 Content="Close"
-                FontWeight="SemiBold"
                 Command="{Binding CloseCommand}"
-                Height="35"
-                Width="80"
                 Margin="5"
                 HorizontalAlignment="Center"
-                FontSize="20"/>
+                Style="{StaticResource CloseButtonSytle}"/>
     </Grid>
 </Window>

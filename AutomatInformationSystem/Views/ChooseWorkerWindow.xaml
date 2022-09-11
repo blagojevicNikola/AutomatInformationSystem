@@ -6,6 +6,15 @@
         xmlns:local="clr-namespace:AutomatInformationSystem.Views"
         mc:Ignorable="d"
         Title="ChooseWorkerWindow" Height="550" Width="400">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -47,13 +56,11 @@
         
 
         <Button Grid.Row="2"
-                Padding="5"
                 Margin="10"
                 Content="Continue"
-                FontSize="20"
-                FontWeight="SemiBold"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
-                Command="{Binding ContinueCommand}"/>
+                Command="{Binding ContinueCommand}"
+                Style="{StaticResource CloseButtonSytle}"/>
     </Grid>
 </Window>

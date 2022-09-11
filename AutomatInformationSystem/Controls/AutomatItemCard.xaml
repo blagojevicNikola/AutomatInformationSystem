@@ -5,10 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AutomatInformationSystem.Controls"
              xmlns:gl="clr-namespace:AutomatInformationSystem"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d"
              Height="60"
              Margin="0,5,0,0"
              d:DesignHeight="60" d:DesignWidth="1000">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Resources/Styles.xaml"/>
+    </UserControl.Resources>
+
     <Border Background="white"
             CornerRadius="14">
         <Grid d:DataContext="{x:Static gl:AutomatItemCardDesignView.Instance}">
@@ -100,30 +106,35 @@
                     Height="30"
                     Margin="5,0,8,0"
                     Grid.Column="0"
-                    Command="{Binding FillCommand}">
+                    Command="{Binding FillCommand}"
+                    Style="{StaticResource FillButtonSytle}">
+                        <fa:FontAwesome Icon="PlusCircle" FontSize="22"/>
                 </Button>
                 
                 <Button Width="30"
                     Height="30"
                     Margin="5,0,8,0"
                     Grid.Column="1"
-                    Command="{Binding ManageCommand}">
-                    <Image Source="/Assets/Images/info.png"/>
+                    Command="{Binding ManageCommand}"
+                    Style="{StaticResource InfoButtonSytle}">
+                        <fa:FontAwesome Icon="Info" FontSize="22"/>
                 </Button>
 
                 <Button Width="30"
                     Height="30"
                     Margin="5,0,5,0"
                     Grid.Column="2"
-                    Command="{Binding UpdateCommand}">
-                    <Image Source="/Assets/Images/edit.png"/>
+                    Command="{Binding UpdateCommand}"
+                    Style="{StaticResource EditButtonSytle}">
+                        <fa:FontAwesome Icon="Pencil" FontSize="22"/>
                 </Button>
                 <Button Width="30"
                     Height="30"
                     Margin="5,0,8,0"
                     Grid.Column="3"
-                    Command="{Binding DeleteCommand}">
-                    <Image Source="/Assets/Images/trashcan.png"/>
+                    Command="{Binding DeleteCommand}"
+                    Style="{StaticResource DeleteButtonSytle}">
+                        <fa:FontAwesome Icon="TrashOutline" FontSize="22"/>
                 </Button>
             </Grid>
 

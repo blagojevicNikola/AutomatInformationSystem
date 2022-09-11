@@ -64,3 +64,5 @@ C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj
 C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\FillReviewWindow.g.cs
 C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Views\FillReviewWindow.baml
 C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\obj\Debug\Resources\Styles.baml
+C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\bin\Debug\FontAwesome.WPF.dll
+C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\bin\Debug\FontAwesome.WPF.xml
