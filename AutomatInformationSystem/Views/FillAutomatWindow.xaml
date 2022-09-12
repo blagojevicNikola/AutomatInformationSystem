@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:AutomatInformationSystem.Views"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="FillAutomatWindow" Height="450" Width="950">
+        Title="FillAutomatWindow" Height="450" Width="950"
+        WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -36,7 +37,7 @@
                     Grid.Row="1"
                     HorizontalAlignment="Left">
                 <Run Text="Ukupan prihod: "
-                     FontWeight="SemiBold"
+                     FontWeight="Regular"
                      FontSize="14"/>
                 <Run Text="{Binding UkupanPrihod}"
                      FontWeight="SemiBold"
@@ -55,22 +56,28 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <ListView Grid.Column="0"
+            <Border Background="#f2f2f2" CornerRadius="15"
+                    Grid.Column="0">
+                <ScrollViewer>
+                    <ListView Background="Transparent"
+                      BorderThickness="0"
                       Width="200"
-                      Height="240"
+                      VerticalContentAlignment="Top"
                       SelectedItem="{Binding ToBeAdded}"
                       ItemsSource="{Binding DostupniProizvodi}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Label Content="{Binding Naziv}"
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Naziv}"
                                FontSize="15"
                                FontWeight="SemiBold"
                                FontStyle="Italic"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                
-            </ListView>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
 
+                    </ListView>
+                </ScrollViewer>
+            
+            </Border>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -101,28 +108,33 @@
 
 
             </Grid>
-
-            <ListView Grid.Column="2"
-                      Width="200"
-                      Height="240"
-                      SelectedItem="{Binding ToBeRemoved}"
-                      ItemsSource="{Binding IzabraniProizvodi}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="5"
-                                    Orientation="Horizontal">
-                            <Label Content="{Binding Naziv}"
-                                   Margin="0,0,5,0"
-                                   FontSize="15"
-                                   FontWeight="SemiBold"/>
-                            <Label Content="{Binding Kolicina}"
-                                   FontSize="15"
-                                   FontWeight="SemiBold"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-
+            <Border Background="#f2f2f2" CornerRadius="15"
+                    Grid.Column="2">
+                <ScrollViewer>
+                    <ListView Background="Transparent"
+                          BorderThickness="0"
+                          Width="200"
+                          VerticalContentAlignment="Top"
+                          SelectedItem="{Binding ToBeRemoved}"
+                          ItemsSource="{Binding IzabraniProizvodi}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="5"
+                                        Orientation="Horizontal">
+                                    <Label Content="{Binding Naziv}"
+                                       Margin="0,0,5,0"
+                                       FontSize="15"
+                                       FontWeight="SemiBold"/>
+                                    <Label Content="{Binding Kolicina}"
+                                       FontSize="15"
+                                       FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
+               
+            </Border>
             <Grid Grid.Column="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -158,10 +170,10 @@
                            BorderThickness="0">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Margin="5">
+                            <Grid Margin="5" Width="240">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0"
@@ -176,14 +188,15 @@
                                        FontStyle="Italic" 
                                        FontWeight="Medium"
                                        Margin="0,0,15,0"/>
-                                <Button Grid.Column="2"
+                                    <Button Grid.Column="2"
                                     Height="20"
                                     Width="20"
                                     Command="{Binding InfoCommand}"
                                     HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    />
-                            </Grid>
+                                    Style="{StaticResource QuestionButtonSytle}">
+                                        <fa:FontAwesome Icon="Question" FontSize="16"/>
+                                    </Button>
+                                </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

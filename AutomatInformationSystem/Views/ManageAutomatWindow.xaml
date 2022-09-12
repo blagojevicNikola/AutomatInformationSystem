@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutomatInformationSystem.Views"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="ManageAutomatWindow" Height="420" Width="800">
+        Title="ManageAutomatWindow" Height="410" Width="820"
+        WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -23,19 +25,14 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Content="{Binding Sifra}"
+        <Label Content="{Binding Sifra, FallbackValue='NaN'}"
                FontSize="32"
                FontWeight="Bold"
                Padding="0"
                Margin="5"
                Grid.Row="0"/>
 
-        <Label Content="Proizvodi"
-               FontSize="20"
-               FontWeight="SemiBold"
-               Padding="0"
-               Margin="5"
-               Grid.Row="1"/>
+        
 
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
@@ -51,7 +48,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Border Grid.Column="0" Background="#f2f2f2"
-                        CornerRadius="15">
+                        CornerRadius="15" Margin="9">
                     <ListView Background="Transparent"
                               BorderThickness="0"
                               Height="200"
@@ -75,24 +72,22 @@
                             VerticalAlignment="Center">
                     <Button
                         VerticalAlignment="Center"
-                        Content="Add"
-                        Height="30"
-                        Width="60"
-                        FontSize="15"
                         Margin="5"
-                        Command="{Binding AddCommand}"/>
+                        Command="{Binding AddCommand}"
+                        Style="{StaticResource ImportProizvodButtonSytle}">
+                        <fa:FontAwesome Icon="Plus" FontSize="19"/>
+                    </Button>
                     <Button 
                         VerticalAlignment="center"
-                        Content="Remove"
-                        Height="30"
-                        Width="60"
-                        FontSize="15"
                         Margin="5"
-                        Command="{Binding RemoveCommand}"/>
+                        Command="{Binding RemoveCommand}"
+                        Style="{StaticResource RemoveProizvodButtonSytle}">
+                        <fa:FontAwesome Icon="Minus" FontSize="19"/>
+                    </Button>
                 </StackPanel>
 
                 <Border Grid.Column="2" Background="#f2f2f2"
-                        CornerRadius="15">
+                        CornerRadius="15" Margin="9">
                     <ListView Background="Transparent"
                               BorderThickness="0"
                               Height="200"
@@ -141,18 +136,19 @@
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="190"/>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="0"
                             Grid.Column="0"
+                            Margin="10,0,0,0"
                             >
                     <Label Content="Cijena"
                            Margin="5,0,5,0"
@@ -168,8 +164,9 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal"
-                            Grid.Row="1"
-                            Grid.Column="0"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
                             >
                     <Label Content="Kolicina"
                            Margin="5,0,5,0"
@@ -188,10 +185,9 @@
                 <Button Grid.Column="1"
                         Grid.Row="1"
                         Content="OK"
-                        Width="100"
-                        Height="40"
-                        Margin="0,0,5,0"
+                        Margin="10"
                         HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
                         Command="{Binding OkCommand}"
                         Style="{StaticResource OkButtonSytle}"/>
             </Grid>

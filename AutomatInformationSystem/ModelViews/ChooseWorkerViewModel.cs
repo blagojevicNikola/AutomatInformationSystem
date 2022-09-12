@@ -40,7 +40,10 @@ namespace AutomatInformationSystem
 
         private void continueExecute()
         {
-            ClosingRequest(this, EventArgs.Empty);
+            if(getSelectedWorker()!=null)
+            {
+                ClosingRequest(this, EventArgs.Empty);
+            }
         }
 
     }
