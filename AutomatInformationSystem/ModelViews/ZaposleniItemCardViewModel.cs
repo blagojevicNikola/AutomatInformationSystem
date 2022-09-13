@@ -25,6 +25,7 @@ namespace AutomatInformationSystem
 
         public DateTime DatumRodjenja { get; set; }
 
+        public EventHandler ReloadRequest;
         public ICommand DeleteCommand { get; set; }
         public ICommand UpdateCommand { get; set; }
 
@@ -73,7 +74,7 @@ namespace AutomatInformationSystem
             {
                 MessageBox.Show(e.Message);
             }
-            
+            ReloadRequest(this, EventArgs.Empty);
         }
 
         private void updateZaposleni()

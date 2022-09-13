@@ -25,6 +25,7 @@ namespace AutomatInformationSystem
 
         public string Potrosnja { get { return _potrosnja; } set { _potrosnja = value + "W"; } }
 
+        public EventHandler ReloadRequest;
         public ICommand DeleteCommand { get; set; }
         public ICommand UpdateCommand { get; set; }
         public ICommand ManageCommand { get; set; }
@@ -60,7 +61,7 @@ namespace AutomatInformationSystem
             {
                 MessageBox.Show(e.Message);
             }
-            
+            ReloadRequest(this, EventArgs.Empty);
         }
 
         private void updateAutomat()

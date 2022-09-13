@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace AutomatInformationSystem
         public event PropertyChangedEventHandler PropertyChanged;
 
         public event EventHandler ClosingRequest;
+        public event EventHandler ReloadRequest;
 
         public AddingProizvodViewModel()
         {
@@ -68,8 +70,16 @@ namespace AutomatInformationSystem
                     }
                 }
             }
-            dao.saveProizvod(Naziv, Tip, tempList);
+            try
+            {
+                dao.saveProizvod(Naziv, Tip, tempList);
+            }
+            catch(MySqlException)
+            {
+                MessageBox.Show("Greska prilikom unosa proizvoda!");
+            }
             ClosingRequest(this, EventArgs.Empty);
+            ReloadRequest(this, EventArgs.Empty);
         }
 
         private void addSastojciList()

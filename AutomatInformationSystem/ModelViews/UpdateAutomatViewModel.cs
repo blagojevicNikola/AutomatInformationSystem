@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AutomatInformationSystem
@@ -40,35 +42,42 @@ namespace AutomatInformationSystem
         public UpdateAutomatViewModel(int id, string tip)
         {
             IAutomatDAO dao = new AutomatiImplDAO();
-            automat = dao.GetAutomatById(id, tip);
-            SerijskiBroj = automat.SerijskiBroj.ToString();
-            DatumPostavljanja = automat.DatumPostavljanja.ToString("dd/MM/yyyy");
-            Potrosnja = automat.Potrosnja.ToString();
-            Tip = automat.Tip;
-            if(Tip=="Hrana")
+            try
             {
-                AutomatHraneDTO temp = (AutomatHraneDTO)automat;
-                Kapacitet = temp.Kapacitet.ToString();
-            }    
-            else
-            {
-                AutomatKafeDTO temp = (AutomatKafeDTO)automat;
-                Kapacitet = temp.Kapacitet.ToString();
-            }
-            IObjektiDAO objDao = new ObjektiImplDAO();
-            List<ObjekatDTO> listaObjekata = objDao.GetAllObjekti();
-            ObservableCollection<ObjektiItemViewModel> obsObj = new ObservableCollection<ObjektiItemViewModel>();
-            ILokacijeDAO lokDao = new LokacijeImplDAO();
-            listaObjekata.ForEach((s) => {
-                bool b = false;
-                if(s.ID==automat.ObjekatID)
+                automat = dao.GetAutomatById(id, tip);
+                SerijskiBroj = automat.SerijskiBroj.ToString();
+                DatumPostavljanja = automat.DatumPostavljanja.ToString("dd/MM/yyyy");
+                Potrosnja = automat.Potrosnja.ToString();
+                Tip = automat.Tip;
+                if (Tip == "Hrana")
                 {
-                    b = true;
+                    AutomatHraneDTO temp = (AutomatHraneDTO)automat;
+                    Kapacitet = temp.Kapacitet.ToString();
                 }
-                LokacijaDTO lokTemp = lokDao.GetLokacijaById(s.LokacijaID);
-                obsObj.Add(new ObjektiItemViewModel(s.ID, s.Naziv, lokTemp.Adresa, b));
-            });
-            ListaObjekata = obsObj;
+                else
+                {
+                    AutomatKafeDTO temp = (AutomatKafeDTO)automat;
+                    Kapacitet = temp.Kapacitet.ToString();
+                }
+                IObjektiDAO objDao = new ObjektiImplDAO();
+                List<ObjekatDTO> listaObjekata = objDao.GetAllObjekti();
+                ObservableCollection<ObjektiItemViewModel> obsObj = new ObservableCollection<ObjektiItemViewModel>();
+                ILokacijeDAO lokDao = new LokacijeImplDAO();
+                listaObjekata.ForEach((s) =>
+                {
+                    bool b = false;
+                    if (s.ID == automat.ObjekatID)
+                    {
+                        b = true;
+                    }
+                    LokacijaDTO lokTemp = lokDao.GetLokacijaById(s.LokacijaID);
+                    obsObj.Add(new ObjektiItemViewModel(s.ID, s.Naziv, lokTemp.Adresa, b));
+                });
+                ListaObjekata = obsObj;
+            }catch(MySqlException)
+            {
+                MessageBox.Show("Greska prilikom ucitavanja!");
+            }
             OkCommand = new RelayCommand(updateAutomat);
             ClearSelectionCommand = new RelayCommand(clearSelection);
         }
@@ -94,6 +103,13 @@ namespace AutomatInformationSystem
             else
             {
                 newAutomat = new AutomatKafeDTO(automat.ID, DateTime.ParseExact(DatumPostavljanja, "dd/MM/yyyy", CultureInfo.InvariantCulture), selectedObjId, Tip, double.Parse(Potrosnja), long.Parse(SerijskiBroj), double.Parse(Kapacitet), 0);
+            }
+            try
+            {
+                        
+            }catch(MySqlException)
+            {
+                _ = MessageBox.Show("Greska prilikom azuriranja automata!");
             }
             dao.updateAutomat(newAutomat);
             ClosingRequest(this, EventArgs.Empty);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AutomatInformationSystem
@@ -15,7 +17,7 @@ namespace AutomatInformationSystem
         public event PropertyChangedEventHandler PropertyChanged;
 
         public event EventHandler ClosingRequest;
-
+        public event EventHandler ReloadRequest;
         public AddingAutomatViewModel()
         {
             this.OkCommand = new RelayCommand(okExecute);
@@ -23,13 +25,25 @@ namespace AutomatInformationSystem
             IObjektiDAO objDao = new ObjektiImplDAO();
             ILokacijeDAO lokDao = new LokacijeImplDAO();
             ObservableCollection<ObjektiItemViewModel> objektiVM = new ObservableCollection<ObjektiItemViewModel>();
-            List<ObjekatDTO> listaObjekata = objDao.GetAllObjekti();
-            foreach(ObjekatDTO o in listaObjekata)
+
+            List<ObjekatDTO> listaObjekata = null;
+            try
             {
-                LokacijaDTO tempLok = lokDao.GetLokacijaById(o.LokacijaID);
-                objektiVM.Add(new ObjektiItemViewModel(o.ID,o.Naziv, tempLok.Adresa + "(" + tempLok.Grad + ")"));
+                listaObjekata = objDao.GetAllObjekti();
+                if(listaObjekata!=null)
+                {
+                    foreach (ObjekatDTO o in listaObjekata)
+                    {
+                        LokacijaDTO tempLok = lokDao.GetLokacijaById(o.LokacijaID);
+                        objektiVM.Add(new ObjektiItemViewModel(o.ID, o.Naziv, tempLok.Adresa + "(" + tempLok.Grad + ")"));
+                    }
+                }
+                ListaObjekata = objektiVM;
+            }catch(MySqlException)
+            {
+                MessageBox.Show("Greska!");
             }
-            ListaObjekata = objektiVM;
+            
         }
 
         private string serijskiBroj;
@@ -76,8 +90,16 @@ namespace AutomatInformationSystem
                 double kapacitet = double.Parse(Kapacitet);
                 newAutomat = new AutomatKafeDTO(datumPost, objId, Tip, potros, serijskiBr, kapacitet);
             }
-            dao.saveAutomat(newAutomat);
+            try
+            {
+                dao.saveAutomat(newAutomat);
+            }catch(MySqlException)
+            {
+                MessageBox.Show("Greska prilikom upisa automata!");
+            }
+            ReloadRequest(this, EventArgs.Empty);
             ClosingRequest(this, EventArgs.Empty);
+            
         }
 
         private void clearSelection()

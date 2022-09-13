@@ -365,4 +365,38 @@
 
     </Style>
 
+    <Style x:Key="ClearSelectionButtonSytle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#e0e0e0"/>
+        <Setter Property="MinHeight" Value="20"/>
+        <Setter Property="MinWidth" Value="100"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Visibility" Value="Visible"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="#363636"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border CornerRadius="14"
+                                Background="{TemplateBinding Background}"
+                                AllowDrop="True"/>
+                        <ContentPresenter Grid.Row="0"
+                                          Margin="3"
+                                          Grid.Column="0"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#c9c9c9"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
 </ResourceDictionary>

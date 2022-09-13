@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AutomatInformationSystem
@@ -63,7 +65,14 @@ namespace AutomatInformationSystem
             {
                 newZaposleni = new ServiserDTO(this.id, Ime, Prezime, Telefon, datumRodj, Tip);
             }
-            dao.updateZaposleni(newZaposleni);
+            try
+            {
+                dao.updateZaposleni(newZaposleni);
+
+            }catch(MySqlException)
+            {
+                MessageBox.Show("Greska prilikom azuriranja zaposlenog!");
+            }
             ClosingRequest(this, EventArgs.Empty);
         }
     }

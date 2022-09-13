@@ -262,7 +262,7 @@ namespace AutomatInformationSystem
                 command.Parameters.AddWithValue("@pPoruka", por);
                 command.Parameters["@pPoruka"].Direction = System.Data.ParameterDirection.Output;
                 bool status = false;
-                command.Parameters.AddWithValue("@pStatus", status);
+                command.Parameters.AddWithValue("@pStatus", MySqlDbType.Int32);
                 command.Parameters["@pStatus"].Direction = System.Data.ParameterDirection.Output;
 
                 //command.CommandText = "insert into ah_nudi_h VALUES(@idAutomat, @idProizvod, @Cijena,@Kolicina)";
@@ -273,6 +273,7 @@ namespace AutomatInformationSystem
                 //command.Parameters.AddWithValue("@Kolicina", kolicina);
                 command.ExecuteNonQuery();
                 poruka = command.Parameters["@pPoruka"].Value.ToString();
+                status = ((int)command.Parameters["@pStatus"].Value) !=0;
                 return status;
                 
             }

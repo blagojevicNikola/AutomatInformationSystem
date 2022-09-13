@@ -1,9 +1,11 @@
 ﻿using AutomatInformationSystem.Views;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AutomatInformationSystem
@@ -15,6 +17,8 @@ namespace AutomatInformationSystem
         public string Naziv { get; set; }
 
         public string Tip { get; set; }
+
+        public EventHandler ReloadRequest;
 
         public ICommand DeleteCommand { get; set; }
 
@@ -45,7 +49,15 @@ namespace AutomatInformationSystem
         private void deleteProizvod()
         {
             IProizvodDAO dao = new ProizvodiImplDAO();
-            dao.deleteProizvod(ID, Tip);
+            try
+            {
+                dao.deleteProizvod(ID, Tip);
+            }
+            catch(MySqlException)
+            {
+                MessageBox.Show("Greska prilikom brisanja proizvoda!");
+            }
+            ReloadRequest(this, EventArgs.Empty);
         }
 
         private void updateProizvod()

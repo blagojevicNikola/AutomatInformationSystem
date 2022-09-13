@@ -1,9 +1,11 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AutomatInformationSystem
@@ -22,24 +24,30 @@ namespace AutomatInformationSystem
 
         public FillReviewModelView(int radnikId, int punjenjeId, string tip)
         {
-            IPrihodDAO prihodDao = new PrihodImplDAO();
-            PunjenjeDTO punjenje = prihodDao.GetPunjenjeById(punjenjeId);
-            IZaposleniDAO zaposleniDao = new ZaposleniImplDAO();
-            RadnikDTO radnik = zaposleniDao.GetRadnikById(punjenje.RadnikID);
-            ImePrezime = radnik.Ime + " " + radnik.Prezime;
-            Datum = punjenje.DatumPunjenja.ToString();
-            List<ProizvodPunjenjaDTO> tempLista = null;
-            if(tip=="Hrana")
+            try
             {
-                tempLista = prihodDao.GetAllHranaByPunjenje(punjenjeId);
-            }
-            else
+                IPrihodDAO prihodDao = new PrihodImplDAO();
+                PunjenjeDTO punjenje = prihodDao.GetPunjenjeById(punjenjeId);
+                IZaposleniDAO zaposleniDao = new ZaposleniImplDAO();
+                RadnikDTO radnik = zaposleniDao.GetRadnikById(punjenje.RadnikID);
+                ImePrezime = radnik.Ime + " " + radnik.Prezime;
+                Datum = punjenje.DatumPunjenja.ToString();
+                List<ProizvodPunjenjaDTO> tempLista = null;
+                if (tip == "Hrana")
+                {
+                    tempLista = prihodDao.GetAllHranaByPunjenje(punjenjeId);
+                }
+                else
+                {
+                    tempLista = prihodDao.GetAllSastojciByPunjenje(punjenjeId);
+                }
+                ObservableCollection<FillWithProizvodViewModel> obsLista = new ObservableCollection<FillWithProizvodViewModel>();
+                tempLista.ForEach(s => obsLista.Add(new FillWithProizvodViewModel(s.Naziv, s.Kolicina)));
+                UbaceniProizvodi = obsLista;
+            }catch(MySqlException)
             {
-                tempLista = prihodDao.GetAllSastojciByPunjenje(punjenjeId);
+                MessageBox.Show("Greska prilikom ucitavanja!");
             }
-            ObservableCollection<FillWithProizvodViewModel> obsLista = new ObservableCollection<FillWithProizvodViewModel>();
-            tempLista.ForEach(s => obsLista.Add(new FillWithProizvodViewModel(s.Naziv, s.Kolicina)));
-            UbaceniProizvodi = obsLista;
             CloseCommand = new RelayCommand(closeWindow);
         }
 

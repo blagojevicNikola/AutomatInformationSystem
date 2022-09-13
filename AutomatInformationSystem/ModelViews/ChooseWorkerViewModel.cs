@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AutomatInformationSystem
@@ -19,9 +21,17 @@ namespace AutomatInformationSystem
         public ChooseWorkerViewModel()
         {
             IZaposleniDAO dao = new ZaposleniImplDAO();
-            List<RadnikDTO> sviRadnici = dao.GetAllRadnici();
+            List<RadnikDTO> sviRadnici = null;
             ObservableCollection<SelectionWorkerViewModel> obsRadnici = new ObservableCollection<SelectionWorkerViewModel>();
-            sviRadnici.ForEach(s => obsRadnici.Add(new SelectionWorkerViewModel(s.Sifra, s.Ime, s.Prezime)));
+            try
+            {
+                sviRadnici = dao.GetAllRadnici();
+                sviRadnici.ForEach(s => obsRadnici.Add(new SelectionWorkerViewModel(s.Sifra, s.Ime, s.Prezime)));
+            }catch(MySqlException)
+            {
+                MessageBox.Show("Greska prilikom ucitavanja radnika!");
+            }
+            
             ListaRadnika = obsRadnici;
             ContinueCommand = new RelayCommand(continueExecute);
         }

@@ -33,9 +33,9 @@
                Margin="5"
                Grid.Row="0"/>
 
-        <TextBlock  Margin="5"
+        <TextBlock  Margin="0,5,10,0"
                     Grid.Row="1"
-                    HorizontalAlignment="Left">
+                    HorizontalAlignment="Right">
                 <Run Text="Ukupan prihod: "
                      FontWeight="Regular"
                      FontSize="14"/>
@@ -165,12 +165,12 @@
             <Border Background="#f2f2f2" CornerRadius="15"
                     Grid.Column="4">
             <ScrollViewer>
-                <ListView  ItemsSource="{Binding PrihodiAutomata}"
+                <ItemsControl ItemsSource="{Binding PrihodiAutomata}"
                            Background="Transparent"
                            BorderThickness="0">
-                    <ListView.ItemTemplate>
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Grid Margin="5" Width="240">
+                            <Grid Margin="5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="auto"/>
@@ -198,8 +198,8 @@
                                     </Button>
                                 </Grid>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
                 
             </ScrollViewer>
             </Border>

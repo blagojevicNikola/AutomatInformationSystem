@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AutomatInformationSystem
@@ -41,12 +43,19 @@ namespace AutomatInformationSystem
             if(Tip=="Kafa")
             {
                 ISastojciDAO dao = new SastojciImplDAO();
-                List<SastojciDTO> dostupniSastojci = dao.GetAvailableSastojci(id);
-                izabraniSastojci = dao.GetSelectedSastojci(id);
-                //izabraniSastojci = sastojciIds;
+                List<SastojciDTO> dostupniSastojci = null;
                 ObservableCollection<SastojciViewModel> obsSastojci = new ObservableCollection<SastojciViewModel>();
-                izabraniSastojci.ForEach(s => obsSastojci.Add(new SastojciViewModel(s.ID, s.Naziv, true)));
-                dostupniSastojci.ForEach((s) => { obsSastojci.Add(new SastojciViewModel(s.ID, s.Naziv, false)); });
+                try
+                {
+                    dostupniSastojci = dao.GetAvailableSastojci(id);
+                    izabraniSastojci = dao.GetSelectedSastojci(id);
+                    //izabraniSastojci = sastojciIds;
+                    izabraniSastojci.ForEach(s => obsSastojci.Add(new SastojciViewModel(s.ID, s.Naziv, true)));
+                    dostupniSastojci.ForEach((s) => { obsSastojci.Add(new SastojciViewModel(s.ID, s.Naziv, false)); });
+                }catch(MySqlException)
+                {
+                    MessageBox.Show("Greska prilikom ucitavanja sastojaka!");
+                }
                 ListaSastojaka = obsSastojci;
             }
             
@@ -72,7 +81,14 @@ namespace AutomatInformationSystem
                 }
             }
             IProizvodDAO dao = new ProizvodiImplDAO();
-            dao.updateProizvod(this.id, Naziv,Tip, addList, removeList);
+            try
+            {
+                dao.updateProizvod(this.id, Naziv, Tip, addList, removeList);
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Greska prilikom azuriranja proizvoda!");
+            }
             ClosingRequest(this, EventArgs.Empty);
         }
 

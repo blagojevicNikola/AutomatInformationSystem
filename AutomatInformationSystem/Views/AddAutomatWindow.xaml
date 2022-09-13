@@ -122,9 +122,9 @@
                    FontSize="15"/>
                 <Button Content="Clear selection"
                         FontWeight="Medium"
-                        FontSize="15"
                         Margin="10,0,10,0"
                         VerticalAlignment="Center"
+                        Style="{StaticResource ClearSelectionButtonSytle}"
                         Command="{Binding Path=ClearSelectionCommand}"/>
             </StackPanel>
 

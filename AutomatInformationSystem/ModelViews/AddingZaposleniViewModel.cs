@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AutomatInformationSystem
@@ -14,6 +16,7 @@ namespace AutomatInformationSystem
         public event PropertyChangedEventHandler PropertyChanged;
 
         public event EventHandler ClosingRequest;
+        public event EventHandler ReloadRequest;
 
         private string ime;
         private string prezime;
@@ -40,8 +43,16 @@ namespace AutomatInformationSystem
         {
             ZaposleniImplDAO dao = new ZaposleniImplDAO();
             DateTime datum = DateTime.ParseExact(datumRodjenja, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            dao.saveZaposleni(Ime, Prezime, Telefon, datum, Tip);
+            try
+            {
+                dao.saveZaposleni(Ime, Prezime, Telefon, datum, Tip);
+            }
+            catch(MySqlException)
+            {
+                MessageBox.Show("Greska prilikom unosa zaposlenog!");
+            }
             ClosingRequest(this, EventArgs.Empty);
+            ReloadRequest(this, EventArgs.Empty);
         }
 
         protected void NotifyPropertyChanged(String info)

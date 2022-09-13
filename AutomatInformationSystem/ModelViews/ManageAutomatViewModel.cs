@@ -104,7 +104,7 @@ namespace AutomatInformationSystem
                 foreach(IzabranProizvodViewModel i in noviProizvodi)
                 {
                     string poruka;
-                    bool result = dao.insertHranaInAutomat(automatId, i.ID, i.Cijena, i.Kolicina,out poruka);
+                    bool result = dao.insertHranaInAutomat(automatId, i.ID, i.Cijena, i.Kolicina, out poruka);
                     if(!result)
                     {
                         MessageBox.Show( poruka + " Unos prekinut!");
