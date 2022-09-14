@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -23,7 +24,6 @@ namespace AutomatInformationSystem
         private string telefon;
         private string datumRodjenja;
         private string tip;
-
         public AddingZaposleniViewModel()
         {
             this.OkCommand = new RelayCommand(okExecute);
@@ -38,10 +38,15 @@ namespace AutomatInformationSystem
         public string Telefon { get { return telefon; } set { telefon = value; NotifyPropertyChanged("Telefon"); } }
         public string DatumRodjenja { get { return datumRodjenja; } set { datumRodjenja = value; NotifyPropertyChanged("Datum"); } }
 
+       
 
         private void okExecute()
         {
             ZaposleniImplDAO dao = new ZaposleniImplDAO();
+            if(!DateTime.TryParseExact(datumRodjenja, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
+            {
+                return;
+            }
             DateTime datum = DateTime.ParseExact(datumRodjenja, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             try
             {
@@ -62,5 +67,6 @@ namespace AutomatInformationSystem
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
+
     }
 }

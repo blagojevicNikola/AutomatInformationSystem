@@ -59,7 +59,9 @@ namespace AutomatInformationSystem
                 dao.deleteAutomat(ID, Tip);
             }catch(MySqlException e)
             {
-                MessageBox.Show(e.Message);
+
+                _ = MessageBox.Show(e.Message);
+               
             }
             ReloadRequest(this, EventArgs.Empty);
         }

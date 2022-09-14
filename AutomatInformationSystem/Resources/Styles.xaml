@@ -399,4 +399,45 @@
 
     </Style>
 
+    <Style x:Key="OkZaposleniButtonSytle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#54dc11"/>
+        <Setter Property="MinHeight" Value="40"/>
+        <Setter Property="MinWidth" Value="100"/>
+        <Setter Property="Visibility" Value="Visible"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="IsEnabled" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border CornerRadius="14"
+                                    Background="{TemplateBinding Background}"/>
+                        <ContentPresenter Grid.Row="0"
+                                          Grid.Column="0"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="LawnGreen"/>
+            </Trigger>
+            <DataTrigger Binding="{Binding ElementName=zaposleniDatumRodjTextBox, Path=(Validation.HasError)}" Value="True">
+                <Setter Property="IsEnabled" Value="False" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ElementName=zaposleniTelefonTextBox, Path=(Validation.HasError)}" Value="True">
+                <Setter Property="IsEnabled" Value="False" />
+            </DataTrigger>
+        </Style.Triggers>
+
+    </Style>
+
+    
+
 </ResourceDictionary>

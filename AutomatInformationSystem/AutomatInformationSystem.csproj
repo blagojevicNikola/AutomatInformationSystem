@@ -132,6 +132,9 @@
     <Compile Include="Model\DTO\UgovorDTO.cs" />
     <Compile Include="Model\DTO\VlasnikDTO.cs" />
     <Compile Include="Model\DTO\ZaposleniDTO.cs" />
+    <Compile Include="Rules\DateValidationRule.cs" />
+    <Compile Include="Rules\PhoneNumberValidationRule.cs" />
+    <Compile Include="Rules\SeriesNumberValidationRule.cs" />
     <Compile Include="Views\AddAutomatWindow.xaml.cs">
       <DependentUpon>AddAutomatWindow.xaml</DependentUpon>
     </Compile>

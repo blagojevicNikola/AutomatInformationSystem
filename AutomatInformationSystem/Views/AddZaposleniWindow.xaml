@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AutomatInformationSystem.Views"
+        xmlns:local="clr-namespace:AutomatInformationSystem.Views" xmlns:automatinformationsystem="clr-namespace:AutomatInformationSystem"
         mc:Ignorable="d"
         Title="AddZaposleniWindow" Height="500" Width="400"
         WindowStartupLocation="CenterScreen">
@@ -59,11 +59,19 @@
                    FontSize="15"
                    Margin="0,0,0,5"
                    Padding="0"/>
-            <TextBox FontWeight="SemiBold"
+            <TextBox x:Name="zaposleniTelefonTextBox"
+                     FontWeight="SemiBold"
                      FontSize="15"
                      Width="250"
-                     HorizontalAlignment="Left"
-                     Text="{Binding Path=Telefon, Mode=TwoWay}"/>
+                     HorizontalAlignment="Left">
+                <TextBox.Text>
+                    <Binding Path="Telefon" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <automatinformationsystem:PhoneNumberValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </StackPanel>
 
         <StackPanel Margin="10,10,0,0" Orientation="Vertical" Grid.Row="3">
@@ -72,11 +80,20 @@
                    FontSize="15"
                    Margin="0,0,0,5"
                    Padding="0"/>
-            <TextBox FontWeight="SemiBold"
+            <TextBox x:Name="zaposleniDatumRodjTextBox"
+                     FontWeight="SemiBold"
                      FontSize="15"
                      Width="250"
-                     HorizontalAlignment="Left"
-                     Text="{Binding Path=DatumRodjenja, Mode=TwoWay}"/>
+                     HorizontalAlignment="Left">
+                <TextBox.Text>
+                    <Binding Path="DatumRodjenja" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <automatinformationsystem:DateValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+
+                </TextBox.Text>
+            </TextBox>
         </StackPanel>
 
         <StackPanel Margin="10,10,0,0" Orientation="Vertical" Grid.Row="4">
@@ -104,7 +121,8 @@
                 Margin="10"
                 Grid.Row="5"
                 Command="{Binding Path=OkCommand}"
-                Style="{StaticResource OkButtonSytle}"/>
+                Style="{StaticResource OkZaposleniButtonSytle}">
+        </Button>
 
     </Grid>
 </Window>
