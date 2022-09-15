@@ -66,9 +66,7 @@
                      HorizontalAlignment="Left">
                 <TextBox.Text>
                     <Binding Path="Telefon" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <automatinformationsystem:PhoneNumberValidationRule/>
-                        </Binding.ValidationRules>
+                        
                     </Binding>
                 </TextBox.Text>
             </TextBox>
@@ -87,9 +85,7 @@
                      HorizontalAlignment="Left">
                 <TextBox.Text>
                     <Binding Path="DatumRodjenja" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <automatinformationsystem:DateValidationRule/>
-                        </Binding.ValidationRules>
+                        
                     </Binding>
 
                 </TextBox.Text>
@@ -121,7 +117,7 @@
                 Margin="10"
                 Grid.Row="5"
                 Command="{Binding Path=OkCommand}"
-                Style="{StaticResource OkZaposleniButtonSytle}">
+                Style="{StaticResource OkButtonSytle}">
         </Button>
 
     </Grid>

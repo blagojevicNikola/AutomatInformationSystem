@@ -54,6 +54,10 @@ namespace AutomatInformationSystem
 
         private void okExecute()
         {
+            if (!validateInput())
+            {
+                return;
+            }
             IZaposleniDAO dao = new ZaposleniImplDAO();
             DateTime datumRodj = DateTime.ParseExact(DatumRodjenja, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             ZaposleniDTO newZaposleni = null;
@@ -74,6 +78,23 @@ namespace AutomatInformationSystem
                 MessageBox.Show("Greska prilikom azuriranja zaposlenog!");
             }
             ClosingRequest(this, EventArgs.Empty);
+        }
+
+        private bool validateInput()
+        {
+            if (string.IsNullOrEmpty(Ime))
+            {
+                return false;
+            }
+            if (string.IsNullOrEmpty(Prezime))
+            {
+                return false;
+            }
+            if (string.IsNullOrEmpty(DatumRodjenja) || !DateTime.TryParseExact(DatumRodjenja, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

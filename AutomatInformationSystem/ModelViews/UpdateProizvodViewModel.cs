@@ -64,6 +64,10 @@ namespace AutomatInformationSystem
 
         private void updateProizvod()
         {
+            if(!validateInput())
+            {
+                return;
+            }
             List<int> addList = new List<int>();
             List<int> removeList = new List<int>();
             if(Tip=="Kafa")
@@ -98,6 +102,15 @@ namespace AutomatInformationSystem
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
+        }
+
+        private bool validateInput()
+        {
+            if (string.IsNullOrEmpty(Naziv))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

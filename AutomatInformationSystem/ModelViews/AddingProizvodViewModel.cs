@@ -58,6 +58,11 @@ namespace AutomatInformationSystem
 
         private void okExecute()
         {
+            if (!validateInput())
+            {
+                return;
+            }
+
             IProizvodDAO dao = new ProizvodiImplDAO();
             List<SastojciDTO> tempList = new List<SastojciDTO>();
             if (Tip=="Kafa")
@@ -82,17 +87,21 @@ namespace AutomatInformationSystem
             ReloadRequest(this, EventArgs.Empty);
         }
 
-        private void addSastojciList()
-        {
-         
-        }
-
         protected void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
+        }
+
+        private bool validateInput()
+        {
+            if (string.IsNullOrEmpty(Naziv))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -88,6 +88,10 @@ namespace AutomatInformationSystem
             AutomatDTO newAutomat = null;
             ObjektiItemViewModel temp = ListaObjekata.ToList().Find(s => s.Izabran);
             int? selectedObjId = null;
+            if(!validateInput())
+            {
+                return;
+            }
             if(temp!=null)
             {
                 selectedObjId = temp.ID;
@@ -135,6 +139,30 @@ namespace AutomatInformationSystem
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
+        }
+
+        private bool validateInput()
+        {
+            if (string.IsNullOrEmpty(SerijskiBroj) || !int.TryParse(SerijskiBroj, out _))
+            {
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(DatumPostavljanja) || !DateTime.TryParseExact(DatumPostavljanja, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
+            {
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(Potrosnja) || !double.TryParse(Potrosnja, out _))
+            {
+                return false;
+            }
+            if (string.IsNullOrEmpty(Kapacitet) || !int.TryParse(Kapacitet, out _) || !double.TryParse(Kapacitet, out _))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

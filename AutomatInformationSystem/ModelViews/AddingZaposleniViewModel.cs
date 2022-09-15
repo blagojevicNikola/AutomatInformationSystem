@@ -42,6 +42,10 @@ namespace AutomatInformationSystem
 
         private void okExecute()
         {
+            if (!validateInput())
+            {
+                return;
+            }
             ZaposleniImplDAO dao = new ZaposleniImplDAO();
             if(!DateTime.TryParseExact(datumRodjenja, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
             {
@@ -68,5 +72,22 @@ namespace AutomatInformationSystem
             }
         }
 
+
+        private bool validateInput()
+        {
+            if(string.IsNullOrEmpty(Ime))
+            {
+                return false;
+            }
+            if(string.IsNullOrEmpty(Prezime))
+            {
+                return false;
+            }
+            if(string.IsNullOrEmpty(DatumRodjenja) || !DateTime.TryParseExact(DatumRodjenja, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
