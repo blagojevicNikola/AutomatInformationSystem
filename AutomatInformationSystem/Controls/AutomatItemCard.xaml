@@ -19,7 +19,7 @@
             CornerRadius="14">
         <Grid d:DataContext="{x:Static gl:AutomatItemCardDesignView.Instance}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="70"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
