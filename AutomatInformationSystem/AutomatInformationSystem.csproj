@@ -282,10 +282,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Images\lokacija.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\automat.png" />
-    <Resource Include="Assets\Images\lokacija.png" />
+    <Resource Include="Assets\Images\lokacija1.png" />
     <Resource Include="Assets\Images\zaposleni.png" />
   </ItemGroup>
   <ItemGroup>
