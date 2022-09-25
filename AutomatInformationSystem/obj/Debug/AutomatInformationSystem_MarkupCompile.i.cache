@@ -16,5 +16,5 @@ C:\Users\win7\source\repos\AutomatInformationSystem\AutomatInformationSystem\App
 16484180665
 Controls\AutomatItemCard.xaml;Controls\ProizvodItemCard.xaml;Controls\ZaposleniItemCard.xaml;MainWindow.xaml;Resources\Styles.xaml;Views\AddAutomatWindow.xaml;Views\AddProizvodWindow.xaml;Views\AddZaposleniWindow.xaml;Views\ChooseWorkerWindow.xaml;Views\CloudView.xaml;Views\EmailView.xaml;Views\FillAutomatWindow.xaml;Views\FillReviewWindow.xaml;Views\HomeView.xaml;Views\ManageAutomatWindow.xaml;Views\UpdateAutomatWindow.xaml;Views\UpdateProizvodWindow.xaml;Views\UpdateZaposleniWindow.xaml;
 
-False
+True
 
